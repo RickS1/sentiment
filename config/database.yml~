@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: sentiment_analysis_production
-  username: root
-  password: Pr1nCip@l_
+  username: erik
+  password: RickS1
