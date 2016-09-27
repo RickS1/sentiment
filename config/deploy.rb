@@ -2,7 +2,7 @@
 lock '3.4.1'
 
 set :application, 'sentiment_analysis'
-set :repo_url, 'https://github.com/RickS1/sentiment'
+set :repo_url, 'https://github.com/RickS1/sentiment.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
