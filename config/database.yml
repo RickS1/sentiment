@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: sentiment_analysis_production
-  username: sentiment_analysis
-  password: <%= ENV['SENTIMENT_ANALYSIS_DATABASE_PASSWORD'] %>
+  username: root
+  password: Pr1nCip@l_
