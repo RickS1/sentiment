@@ -4,6 +4,14 @@
 		<button type="submit" value="Buscar">Buscar</button>
 	</form>
 	<% @client.search("#ayotzinapa OR #ayot2inapa OR #AyotzinapaDosAños", result_type: "recent").take(1).collect do |tweet| %>
-		<p><%= "#{tweet.to_json}" %></p>
+		<p><%= "#{tweet.created_at}" %></p>
+		<p><%= "#{tweet.text}" %></p>
+		<p><%= "#{tweet.entities}" %></p>
+		<p><%= "#{tweet.user.name}" %></p>
+		<p><%= "#{tweet.user.str_id}" %></p>
+		<p><%= "#{tweet.user.location}" %></p>
+		<p><%= "#{tweet.retweeted_status.created_at}" %></p>
+		<p><%= "#{tweet.retweet_count}" %></p>
+		<p><%= "#{tweet.favorite_count}" %></p>
 	<% end %>
 </div>
