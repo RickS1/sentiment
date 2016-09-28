@@ -3,7 +3,7 @@
 		<input type="text">
 		<button type="submit" value="Buscar">Buscar</button>
 	</form>
-	<% @client.search("#ayotzinapa", result_type: "recent").take(3).collect do |tweet| %>
+	<% @client.search("#ayotzinapa OR #ayot2inapa OR #AyotzinapaDosAños", result_type: "recent").each do |tweet| %>
 		<p><%= "#{tweet.user.screen_name}: #{tweet.text}" %></p>
 	<% end %>
 </div>
