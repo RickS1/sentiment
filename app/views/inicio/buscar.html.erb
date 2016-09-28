@@ -6,7 +6,7 @@
 	<% @client.search("#ayotzinapa OR #ayot2inapa OR #AyotzinapaDosAños", result_type: "recent").take(1).collect do |tweet| %>
 		<p><%= "#{tweet.created_at}" %></p>
 		<p><%= "#{tweet.text}" %></p>
-		<p><%= "#{tweet.entities}" %></p>
+		<p><%= "#{tweet.entities.hashtags.to_s}" %></p>
 		<p><%= "#{tweet.user.name}" %></p>
 		<p><%= "#{tweet.user.str_id}" %></p>
 		<p><%= "#{tweet.user.location}" %></p>
