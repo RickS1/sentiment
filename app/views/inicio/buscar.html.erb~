@@ -9,7 +9,7 @@
 		<p><%= "#{tweet.text}" %></p>
 		<p><%= "#{tweet.retweet_count}" %></p>
 		<p><%= "#{tweet.favorite_count}" %></p>
-		<p><%= "#{tweet.entites[:hashtags]}" %></p>
+		<p><%= "#{tweet.entities[:hashtags]}" %></p>
 		
 	<% end %>
 </div>
