@@ -11,5 +11,6 @@ class ApplicationController < ActionController::Base
       config.access_token        = "623060760-OxCJL8Uh22tS8mRvHKfPWkmEJaw9kEwYJ8RJUfgh"
       config.access_token_secret = "TVxxOcV0glsAkC0aCFCI1rzuV3f7Ex7R8MCsJ6xUx9Tbr"
     end
+
   end
 end

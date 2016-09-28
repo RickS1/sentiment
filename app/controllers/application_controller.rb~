@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :twitter_login
 
   def twitter_login
-    @client = Twitter::Streaming::Client.new do |config|
+    @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "7E1FvAn5BP605A8ymTYgCfgvZ"
       config.consumer_secret     = "069VOASUXKprTCgbPpxPuq3uoQ3tnBUNSFv1zp3R7368xYi5Am"
       config.access_token        = "623060760-OxCJL8Uh22tS8mRvHKfPWkmEJaw9kEwYJ8RJUfgh"
