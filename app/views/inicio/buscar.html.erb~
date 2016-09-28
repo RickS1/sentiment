@@ -4,7 +4,7 @@
 		<button type="submit" value="Buscar">Buscar</button>
 	</form>
 	<% @client.search("#ayotzinapa OR #ayot2inapa OR #AyotzinapaDosAños", result_type: "recent").take(1).collect do |tweet| %>
-		<p><%= "#{tweet.inspect}" %></p>
+		<p><%= "#{tweet.attributes}" %></p>
 		
 	<% end %>
 </div>
