@@ -1,4 +1,4 @@
 class Hashtag < ActiveRecord::Base
-  set_table_name "hashtags"
-  set_primary_key "id"
+  self.table_name "hashtags"
+  self.primary_key "id"
 end

@@ -1,4 +1,4 @@
 class Usuario < ActiveRecord::Base
-  set_table_name "usuarios"
-  set_primary_key "id"
+  self.table_name "usuarios"
+  self.primary_key "id"
 end
