@@ -7,10 +7,7 @@
 	</form>
 </div>
 
-<div id="tweets">
+<div id="resultados">
 
 </div>
 
-<script type="text/javascript">
-	$("#tweets").html(gon.tweets.length);
-</script>
