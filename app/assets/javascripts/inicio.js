@@ -5,6 +5,6 @@ $(function(){
 });
 
 function refreshData(){
-	$.getScript("/obtener_stats.js");
+	$.getScript("/inicio/obtener_stats.js");
   setTimeout(refreshData,5000);
 }
