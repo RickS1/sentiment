@@ -1,5 +1,8 @@
 class InicioController < ApplicationController
   def buscar
+  end
 
+  def obtener_stats
+    
   end
 end

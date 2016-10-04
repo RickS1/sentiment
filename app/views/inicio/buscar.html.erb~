@@ -12,5 +12,5 @@
 </div>
 
 <script type="text/javascript">
-	$("#tweets").html(gon.tweets.length)
+	$("#tweets").html(gon.tweets.length);
 </script>
