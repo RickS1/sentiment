@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: octubre_dwh
-  username: pguser
-  password: RickS1
+  username: postgres
+  password: 
