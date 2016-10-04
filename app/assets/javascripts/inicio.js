@@ -1,5 +1,3 @@
-i = 0;
-
 $(function(){
 	setTimeout(refreshData,5000);
 });

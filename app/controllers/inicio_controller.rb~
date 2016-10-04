@@ -5,6 +5,7 @@ class InicioController < ApplicationController
     @usuarios = Usuario.maximum(:id)
 		@stats = {:tweets => @tweets, :hashtags => @hashtags, :usuarios => @usuarios}
     respond_to do |format|
+      format.html
       format.json { render json: @stats}
     end
   end

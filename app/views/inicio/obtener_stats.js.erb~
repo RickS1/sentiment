@@ -1,1 +1,1 @@
-alert("Se completaron 5 segundos");
+$("#resultados").html("<%= j render :partial => 'obtener_stats' %>");
