@@ -4,7 +4,6 @@ $(document).ready(function(){
 	setInterval(function(){
 		$.ajax({
 			url: '/inicio/obtener_stats',
-			data: quote,
 			type: 'GET',
 			cache: false,
 			success: function(data) {
@@ -14,7 +13,7 @@ $(document).ready(function(){
 			error: function() {
 				$("#resultados").html("Error al recoger los datos.");
 			}
-		}), 
-		60000);
-	});
+		})
+	}), 
+	60000);
 });
