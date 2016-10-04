@@ -7,7 +7,7 @@ $(document).ready(function(){
 			type: 'GET',
 			cache: false,
 			success: function(data) {
-				//$("#resultados").html("Tweets: " + stats.tweets + "\nHashtags: " + stats.hashtags + "\nUsuarios mencionados: " + stats.usuarios );
+				console.log(data);
 			},
 			error: function() {
 				$("#resultados").html("Error al recoger los datos.");
