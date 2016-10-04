@@ -15,5 +15,5 @@ $(document).ready(function(){
 			}
 		})
 	}, 
-	60000);
+	5000);
 });
