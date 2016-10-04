@@ -3,11 +3,10 @@
 $(document).ready(function(){
 	setInterval(function(){
 		$.ajax({
-			url: '/inicio/buscar',
+			url: '/inicio/obtener_stats',
 			type: 'GET',
 			cache: false,
 			success: function(data) {
-				stats = JSON.parse(data);
 				$("#resultados").html(data);
 				//$("#resultados").html("Tweets: " + stats.tweets + "\nHashtags: " + stats.hashtags + "\nUsuarios mencionados: " + stats.usuarios );
 			},
