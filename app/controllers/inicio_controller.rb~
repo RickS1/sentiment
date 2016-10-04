@@ -3,6 +3,7 @@ class InicioController < ApplicationController
     @tweets = Tweet.maximum(:id)
     @hashtags = Hashtag.maximum(:id)
     @usuarios = Usuario.maximum(:id)
+		respond_to :html, :js, :json
   end
 
   def obtener_stats

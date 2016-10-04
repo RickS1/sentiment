@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	setInterval(function(){
 		$.ajax({
-			url: '/inicio/obtener_stats',
+			url: '/inicio/buscar',
 			type: 'GET',
 			cache: false,
 			success: function(data) {
