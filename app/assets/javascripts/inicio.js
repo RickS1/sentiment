@@ -15,5 +15,6 @@ $(document).ready(function(){
 				$("#resultados").html("Error al recoger los datos.");
 			}
 		}), 
-	60000);
+		60000);
+	});
 });
