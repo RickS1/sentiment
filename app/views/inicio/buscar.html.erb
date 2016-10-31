@@ -46,7 +46,7 @@ fill:#555;
 		    .data(aristas)
 		  .enter().append("line")
 		    .attr("class", "link")
-		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/100); });
+		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/3); });
 
 			var node = svg.selectAll(".node")
 		    .data(nodos)
