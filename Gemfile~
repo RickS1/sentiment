@@ -38,10 +38,12 @@ gem 'capistrano-bundler'
 gem 'capistrano-rbenv', '~> 2.0'
 
 #twitter para recabar los tweets
-#gem 'twitter'
+#egem 'twitter'
 
 #d3 para hacer visualizaciones
 gem 'd3-rails'
+#crossfilter para el filtrado de datsets
+gem 'crossfilter-rails'
 
 gem 'gon'
 

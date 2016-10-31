@@ -41,7 +41,7 @@ gem 'capistrano-rbenv', '~> 2.0'
 #egem 'twitter'
 
 #d3 para hacer visualizaciones
-gem 'd3-rails'
+#gem 'd3-rails'
 #crossfilter para el filtrado de datsets
 gem 'crossfilter-rails'
 
