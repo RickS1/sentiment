@@ -16,9 +16,9 @@
 		.size([width, height]);
 
 
-	d3.csv("http://200.12.162.229:81/nodos.csv", function(nodos){
+	d3.csv("http://200.12.162.229:81/usuarios_Ayotzinapa.csv", function(nodos){
     nodos_l = nodos;
-		d3.csv("http://200.12.162.229:81/usuarios_apple.csv", function(aristas){
+		d3.csv("http://200.12.162.229:81/usuarios_aristas_num_Ayotzinapa.csv", function(aristas){
       aristas_l = aristas;
 			force.nodes(nodos).links(aristas).start();
 

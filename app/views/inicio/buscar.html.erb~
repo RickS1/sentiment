@@ -1,7 +1,7 @@
 <script src="https://d3js.org/d3.v2.min.js?2.9.3"></script>
 <%= include_gon  %>
 <script type="text/javascript">
-	var nodos;
+	var nodos_l, aristas_l;
 	var width = 960,
 		height = 500
 
@@ -17,7 +17,9 @@
 
 
 	d3.csv("http://200.12.162.229:81/nodos.csv", function(nodos){
+    nodos_l = nodos;
 		d3.csv("http://200.12.162.229:81/usuarios_apple.csv", function(aristas){
+      aristas_l = aristas;
 			force.nodes(nodos).links(aristas).start();
 
 			var link = svg.selectAll(".link")
