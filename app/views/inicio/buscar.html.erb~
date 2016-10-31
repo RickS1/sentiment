@@ -1,7 +1,12 @@
 <%= include_gon  %>
 <script type="text/javascript">
+	var nodos;
+	var aristas;
 	d3.csv("http://200.12.162.229:81/nodos.csv", function(data){
-		console.log(data);
+		nodos = data;
+	});
+	d3.csv("http://200.12.162.229:81/usuarios_apple.csv", function(data){
+		aristas = data;
 	});
 </script>
 
