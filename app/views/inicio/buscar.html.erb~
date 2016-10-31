@@ -2,8 +2,8 @@
 <%= include_gon  %>
 <script type="text/javascript">
 	var nodos_l, aristas_l;
-	var width = 960,
-		height = 500
+	var width = 1024,
+		height = 800
 
 	var svg = d3.select("body").append("svg")
 		.attr("width", width)
@@ -19,6 +19,7 @@
 	d3.csv("http://200.12.162.229:81/usuarios_Ayotzinapa.csv", function(nodos){
     nodos_l = nodos;
 		d3.csv("http://200.12.162.229:81/usuarios_aristas_num_Ayotzinapa.csv", function(aristas){
+			aristas.forEach(function(d){ d["source"] = +d["source"]; d["target"] = +d["target"];})
       aristas_l = aristas;
 			force.nodes(nodos).links(aristas).start();
 
@@ -26,7 +27,7 @@
 		    .data(aristas)
 		  .enter().append("line")
 		    .attr("class", "link")
-		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/3); });
+		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/100); });
 
 			var node = svg.selectAll(".node")
 		    .data(nodos)

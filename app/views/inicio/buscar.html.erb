@@ -1,9 +1,28 @@
+<style>
+
+.link {
+  stroke: #aaa;
+}
+
+.node text {
+stroke:#333;
+cursos:pointer;
+}
+
+.node circle{
+stroke:#fff;
+stroke-width:3px;
+fill:#555;
+}
+
+</style>
+
 <script src="https://d3js.org/d3.v2.min.js?2.9.3"></script>
 <%= include_gon  %>
 <script type="text/javascript">
 	var nodos_l, aristas_l;
-	var width = 960,
-		height = 500
+	var width = 1024,
+		height = 800
 
 	var svg = d3.select("body").append("svg")
 		.attr("width", width)
@@ -27,7 +46,7 @@
 		    .data(aristas)
 		  .enter().append("line")
 		    .attr("class", "link")
-		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/3); });
+		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/100); });
 
 			var node = svg.selectAll(".node")
 		    .data(nodos)
