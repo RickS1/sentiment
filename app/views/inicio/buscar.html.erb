@@ -1,15 +1,7 @@
 <%= include_gon  %>
-
-<% if false %>
-<div>
-	<form>
-		<input type="text">
-		<button type="submit" value="Buscar">Buscar</button>
-	</form>
-</div>
-<% end %>
-
-<div id="resultados">
-
-</div>
+<script type="text/javascript">
+	d3.csv("http://200.12.162.229:81/nodos.csv", function(data){
+		console.log(data);
+	});
+</script>
 
