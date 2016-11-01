@@ -30,9 +30,9 @@ fill:#555;
 
 	var force = d3.layout.force()
 		.gravity(.05)
-		.distance(50)
-		.charge(-10)
-		.friction(0.1)
+		.distance(80)
+		.charge(-20)
+		.friction(0.9)
 		.size([width, height]);
 
 
