@@ -21,8 +21,8 @@ fill:#555;
 <%= include_gon  %>
 <script type="text/javascript">
 	var nodos_l, aristas_l;
-	var width = 1500,
-		height = 900
+	var width = 1700,
+		height = 100
 
 	var svg = d3.select("body").append("svg")
 		.attr("width", width)
@@ -32,7 +32,8 @@ fill:#555;
 		.gravity(.05)
 		.distance(50)
 		.charge(-10)
-		.size([width/1.5, height/1.5]);
+		.friction(0.1)
+		.size([width, height]);
 
 
 	d3.csv("http://200.12.162.229:81/usuarios_Ayotzinapa.csv", function(nodos){
