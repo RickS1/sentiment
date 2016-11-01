@@ -32,6 +32,7 @@ fill:#555;
 		.gravity(.05)
 		.distance(50)
 		.charge(-10)
+		.friction(0.1)
 		.size([width/1.5, height/1.5]);
 
 
@@ -52,7 +53,7 @@ fill:#555;
 		    .data(nodos)
 		  .enter().append("g")
 		    .attr("class", "node")
-		    .call(force.drag().on("drag.force", force.stop()));
+		    .call(force.drag);
 
 			node.append("circle")
 		    .attr("r","6");

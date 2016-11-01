@@ -52,7 +52,7 @@ fill:#555;
 		    .data(nodos)
 		  .enter().append("g")
 		    .attr("class", "node")
-		    .call(force.drag().on("drag.force", force.stop());
+		    .call(force.drag);
 
 			node.append("circle")
 		    .attr("r","6");
