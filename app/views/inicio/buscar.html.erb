@@ -6,7 +6,7 @@
 d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 
-	var width = 400;
+	var width = 800;
 	var height = 400;
 	var margen = 50;
 
@@ -25,9 +25,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	var ejeX = d3.axisBottom(x)
 							.ticks(8);
 
+	var ejeY = d3.axisLeft(y)
+							.ticks(8);
+
 	svg.append("g")
 			.attr("class", "eje-x")
 			.call(ejeX);
+
+	svg.append("g")
+			.attr("class", "eje-y")
+			.call(ejeY);
 
 });
 
