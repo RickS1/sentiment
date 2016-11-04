@@ -33,7 +33,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 					.domain(d3.extent(data, function(d){return d['following']}))
 					.range([height - margen, margen]);
 
-	var color = d3.scaleOrdinal()
+	var color = d3.scaleLinear()
 					.domain([0,1,2,3])
 					.range(["#ff0000","#0000ff","#00ff00","#ffff00"])
 
