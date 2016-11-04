@@ -131,7 +131,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("opacity", function(d){
 				if(x(d["followers"]) >= x.domain()[0] && x(d["followers"]) <= x.domain()[1]){
 					if(y(d["following"]) >= y.domain()[0] && y(d["following"]) <= y.domain()[1]){
-						return 0
+						return 0;
 					}
 				}
 				return 1;
