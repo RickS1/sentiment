@@ -86,7 +86,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	var g = svg. append("g");	
 
 	var zoom = d3.zoom()
-    .scaleExtent([0.1, 1])
+    .scaleExtent([0.2, 2])
     .translateExtent([[0, 0], [width, height]])
     .extent([[0, 0], [width, height]])
     .on("zoom", zoomed);
