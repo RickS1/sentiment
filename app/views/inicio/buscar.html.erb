@@ -33,24 +33,27 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	svg.append("g")
 			.attr("class", "eje-x")
 			.attr("transform", "translate(0," + (height- margen) + ")")
-			.call(ejeX)
-			.append("text")
-				.attr("class", "label")
-				.attr("x", 0)
-				.attr("y", 0)
-				.attr("text-anchor", "end")
-				.text("Seguidores");
+			.call(ejeX);
+			
+	svg.append("text")
+			.attr("class", "label")
+			.attr("x", width/2)
+			.attr("y", margen/2)
+			.attr("text-anchor", "middle")
+			.text("Seguidores");
 
 	svg.append("g")
 			.attr("class", "eje-y")
 			.attr("transform", "translate(" + margen + ", 0)")
-			.call(ejeY)			
-			.append("text")
-				.attr("class", "label")
-				.attr("x", 0)
-				.attr("y", 0)
-				.attr("text-anchor", "middle")
-				.text("Siguiendo");
+			.call(ejeY);	
+		
+	svg.append("text")
+			.attr("class", "label")
+			.attr("x", 0)
+			.attr("y", (height-margen)/2)
+			.attr("transform", "rotate(-90)")
+			.attr("text-anchor", "middle")
+			.text("Siguiendo");
 
 	var points = svg.selectAll(".punto")
 			.data(data)
