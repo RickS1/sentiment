@@ -52,33 +52,34 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 
 	var transform = d3.zoomIdentity;
 
-	svg.append("g")
+	var ax = svg.append("g")
 			.attr("class", "eje-x")
 			.attr("transform", "translate(0," + (height- margen) + ")")
 			.call(ejeX);
 			
-	svg.append("text")
+	ax.append("text")
 			.attr("class", "label")
 			.attr("x", width/2)
 			.attr("y", height - (margen/2))
 			.attr("text-anchor", "middle")
 			.text("Seguidores");
 
-	svg.append("g")
+	var ay = svg.append("g")
 			.attr("class", "eje-y")
 			.attr("transform", "translate(" + margen + ", 0)")
 			.call(ejeY);	
 		
-	svg.append("text")
+	ay.append("text")
 			.attr("class", "label")
 			.attr("x", -(height /2))
 			.attr("y", (margen/2))
 			.attr("transform", "rotate(-90)")
 			.attr("text-anchor", "middle")
 			.text("Siguiendo (cientos de miles)");
-	
 
-	var points = svg.selectAll(".punto")
+	var g = svg. append("g");	
+
+	var points = g.selectAll(".punto")
 			.data(data)
 			.enter().append("circle")
 			.attr("class", "punto")
@@ -106,11 +107,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
       });
 
 	svg.call(d3.zoom()
-		.scaleExtent([1 / 2, 8])
+		.scaleExtent([1 / 8, 8])
 		.on("zoom", zoomed));
 
 	function zoomed() {
-		svg.attr("transform", d3.event.transform);
+		g.attr("transform", d3.event.transform);
 	}
 
 });
