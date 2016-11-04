@@ -33,6 +33,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 					.domain(d3.extent(data, function(d){return d['following']}))
 					.range([height - margen, margen]);
 
+	var color = d3.scaleLinear()
+					.domain([0,1,2,3])
+					.range(["#ff0000","#0000ff","#00ff00","#ffff00"])
+
 	var ejeX = d3.axisBottom(x)
 							.ticks(8);
 
@@ -78,7 +82,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("r",r)
 			.attr("cx", function(d){ return x(d["followers"])})
 			.attr("cy", function(d){ return y(d["following"])})
-			.attr("fill", function(d){ return d3.rgb( 255*d["followers"]/max_followers ,(255*d["following"]/max_following),255)})
+			.attr("fill", function(d){ 
+				var ratio = (d["followers"] > 0 ? d["following"]/d["followers"] : d["following"]);
+				return color(ratio);
+			})
 			.on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
