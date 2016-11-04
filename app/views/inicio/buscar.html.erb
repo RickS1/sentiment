@@ -71,8 +71,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["id"] + "<br/> (" + xValue(d) 
-	        + ", " + yValue(d) + ")")
+          tooltip.html(d["id"] + "<br/> (" + d["followers"] 
+	        + ", " + d["following"] + ")")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
