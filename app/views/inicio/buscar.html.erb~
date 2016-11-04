@@ -41,8 +41,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 							.ticks(8);
 
 	var ejeY = d3.axisLeft(y)
-							.ticks(8)
-							.tickFormat(function(d){return d/100000});
+							.ticks(8);
+							//.tickFormat(function(d){return d/100000});
 
 	var r = 3;
 
@@ -75,7 +75,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("y", (margen/2))
 			.attr("transform", "rotate(-90)")
 			.attr("text-anchor", "middle")
-			.text("Siguiendo (cientos de miles)");
+			.text("Siguiendo");
 
 	var g = svg. append("g");	
 
@@ -114,15 +114,12 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
                .style("opacity", 0);
       });
 
-	svg.call(d3.zoom()
-		.scaleExtent([1 / 8, 8])
-		.on("zoom", zoomed));
-
 	function zoomed() {
 		var t = d3.event.transform;
 		x.domain(t.rescaleX(x).domain());
 		y.domain(t.rescaleY(y).domain());
-		//svg.select(".punto").attr("d", area);
+		svg.select(".punto").attr("cx", function(d){ return x(d["followers"])})
+			.attr("cy", function(d){ return y(d["following"])});
 		svg.select(".eje-x").call(ejeX);
 		svg.select(".eje-y").call(ejeY);
 	}
