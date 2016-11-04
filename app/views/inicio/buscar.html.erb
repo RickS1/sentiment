@@ -76,8 +76,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("transform", "rotate(-90)")
 			.attr("text-anchor", "middle")
 			.text("Siguiendo (cientos de miles)");
+	
+	var g = svg.append("g");
 
-	var points = svg.selectAll(".punto")
+	var points = g.selectAll(".punto")
 			.data(data)
 			.enter().append("circle")
 			.attr("class", "punto")
