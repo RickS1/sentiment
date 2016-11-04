@@ -7,7 +7,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 
 	var width = 800;
-	var height = 400;
+	var height = 600;
 	var margen = 50;
 
 	var svg = d3.select("body").append("svg")
