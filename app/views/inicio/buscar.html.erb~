@@ -7,12 +7,15 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 
 	var width = 800;
-	var height = 400;
+	var height = 600;
 	var margen = 50;
 
 	var svg = d3.select("body").append("svg")
 						.attr("width", width)
 						.attr("height", height);
+
+	var d1 = d3.extent(data, function(d){return d['followers']});
+	var d2 = d3.extent(data, function(d){return d['following']})
 
   var x = d3.scaleLinear()
 					.domain(d3.extent(data, function(d){return d['followers']}))

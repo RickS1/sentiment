@@ -14,12 +14,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 						.attr("width", width)
 						.attr("height", height);
 
+	var d1 = d3.extent(data, function(d){return d['followers']});
+	var d2 = d3.extent(data, function(d){return d['following']});
+	var domain = [d1[0] < d2[0] ? d1[0] : d2[0], d1[1] > d2[1] ? d1[1] : d2[1]];
+
   var x = d3.scaleLinear()
-					.domain(d3.extent(data, function(d){return d['followers']}))
+					.domain(domain)
 					.range([margen, width - margen]);
 
 	var y = d3.scaleLinear()
-					.domain(d3.extent(data, function(d){return d['following']}))
+					.domain(domain)
 					.range([margen, height - margen]);
 
 	var ejeX = d3.axisBottom(x)
