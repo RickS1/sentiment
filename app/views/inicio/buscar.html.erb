@@ -50,7 +50,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-	var transofrm = d3.zoomIdentity;
+	var transform = d3.zoomIdentity;
 
 	svg.append("g")
 			.attr("class", "eje-x")
@@ -77,9 +77,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("text-anchor", "middle")
 			.text("Siguiendo (cientos de miles)");
 	
-	var g = svg.append("g");
 
-	var points = g.selectAll(".punto")
+	var points = svg.selectAll(".punto")
 			.data(data)
 			.enter().append("circle")
 			.attr("class", "punto")
@@ -111,7 +110,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 		.on("zoom", zoomed));
 
 	function zoomed() {
-	g.attr("transform", d3.event.transform);
+		svg.attr("transform", d3.event.transform);
 	}
 
 });
