@@ -1,82 +1,11 @@
-<style>
-
-.link {
-  stroke: #aaa;
-}
-
-.node text {
-stroke:#333;
-cursos:pointer;
-}
-
-.node circle{
-stroke:#fff;
-stroke-width:3px;
-fill:#555;
-}
-
-</style>
-
-<script src="https://d3js.org/d3.v2.min.js?2.9.3"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <%= include_gon  %>
 <script type="text/javascript">
-	var nodos_l, aristas_l;
-	var width = 1700,
-		height = 1000
 
-	var svg = d3.select("body").append("svg")
-		.attr("width", width)
-		.attr("height", height)
-		.attr("margin-top","50px");
+//Cargamos los datos
+d3.csv('200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
+	console.log(data);
+});
 
-	var force = d3.layout.force()
-		.gravity(.05)
-		.distance(80)
-		.charge(-20)
-		.friction(0.9)
-		.size([width, height]);
-
-
-	d3.csv("http://200.12.162.229:81/usuarios_Ayotzinapa.csv", function(nodos){
-    nodos_l = nodos;
-		d3.csv("http://200.12.162.229:81/usuarios_aristas_num_Ayotzinapa.csv", function(aristas){
-			aristas.forEach(function(d){ d["source"] = +d["source"]; d["target"] = +d["target"];})
-      aristas_l = aristas;
-			force.nodes(nodos).links(aristas).start();
-
-			var link = svg.selectAll(".link")
-		    .data(aristas)
-		  .enter().append("line")
-		    .attr("class", "link")
-		  .style("stroke-width", function(d) { return Math.sqrt(/*d.weight*/2); });
-
-			var node = svg.selectAll(".node")
-		    .data(nodos)
-		  .enter().append("g")
-		    .attr("class", "node")
-		    .call(force.drag);
-
-			node.append("circle")
-		    .attr("r","6");
-
-			node.append("text")
-		    .attr("dx", 12)
-		    .attr("dy", ".35em")
-		    .text(function(d) { return d.name });
-
-			node.on("mouseenter",function(e){
-				console.log(e);
-			});
-
-			force.on("tick", function() {
-				link.attr("x1", function(d) { return d.source.x; })
-				    .attr("y1", function(d) { return d.source.y; })
-				    .attr("x2", function(d) { return d.target.x; })
-				    .attr("y2", function(d) { return d.target.y; });
-
-				node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-			});
-		});
-	});
 </script>
 
