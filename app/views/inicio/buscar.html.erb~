@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
 //Cargamos los datos
-d3.csv('200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
+d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	console.log(data);
 });
 

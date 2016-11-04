@@ -4,6 +4,7 @@
 
 //Cargamos los datos
 d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
+	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 	console.log(data);
 });
 
