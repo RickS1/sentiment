@@ -24,7 +24,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 
 	var y = d3.scaleLinear()
 					.domain(domain)
-					.range([margen, height - margen]);
+					.range([height - margen, margen]);
 
 	var ejeX = d3.axisBottom(x)
 							.ticks(8);
