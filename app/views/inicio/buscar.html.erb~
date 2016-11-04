@@ -18,6 +18,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	var width = 800;
 	var height = 800;
 	var margen = 50;
+	var max_followers = d3.max(function(d){return d["followers"]});
+	var max_following = d3.max(function(d){return d["following"]});
 
 	var svg = d3.select("body").append("svg")
 						.attr("width", width)
@@ -76,6 +78,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("r",r)
 			.attr("cx", function(d){ return x(d["followers"])})
 			.attr("cy", function(d){ return y(d["following"])})
+			.attr("fill", function(d){ return "rgb(" + (255*d["followers"]/max_followers) + "," + (255*d["following"]/max_following]) + ",255)"})
 			.on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
