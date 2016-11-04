@@ -37,7 +37,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.append("text")
 				.attr("class", "label")
 				.attr("x", width)
-				.atrr("y", margen - 15)
+				.attr("y", margen - 15)
 				.attr("text-anchor", "end")
 				.text("Seguidores");
 
@@ -48,7 +48,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.append("text")
 				.attr("class", "label")
 				.attr("x", margen)
-				.atrr("y", height)
+				.attr("y", height)
 				.attr("text-anchor", "middle")
 				.text("Siguiendo");
 
