@@ -120,12 +120,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
                .style("opacity", 0);
       });
 
-  svg.append("rect")
-    .attr("class", "zoom")
-    .attr("width", width - margen)
-    .attr("height", height - margen)
-    .attr("transform", "translate(" + margen + "," + margen + ")")
-    .call(zoom);
+	svg.all(zoom);
 
 	function zoomed() {
 		var t = d3.event.transform;
