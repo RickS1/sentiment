@@ -5,6 +5,12 @@
   height: 28px;
   pointer-events: none;
 }
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
 </style>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -113,6 +119,13 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
                .duration(500)
                .style("opacity", 0);
       });
+
+  svg.append("rect")
+    .attr("class", "zoom")
+    .attr("width", width - margen)
+    .attr("height", height - margen)
+    .attr("transform", "translate(" + margen + "," + margen + ")")
+    .call(zoom);
 
 	function zoomed() {
 		var t = d3.event.transform;
