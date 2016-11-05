@@ -128,7 +128,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 		y.domain(t.rescaleY(y).domain());
 		g.selectAll(".punto").remove();
 
-		g.selectAll(".punto")
+		/*g.selectAll(".punto")
 			.data(data)
 			.enter().append("circle")
 			.attr("class", "punto")
@@ -155,7 +155,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
-      });
+      });*/
 		svg.select(".eje-x").call(ejeX);
 		svg.select(".eje-y").call(ejeY);
 	}
