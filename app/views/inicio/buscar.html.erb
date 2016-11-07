@@ -129,7 +129,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 		ay.call(ejeY.scale(d3.event.transform.rescaleY(y)));
 		d3.selectAll(".punto").attr("transform", d3.event.transform);
 		t = d3.select(".punto").attr("transform").replace(/scale(.*)/,"scale(1)");
-		d3.selectAll(".punto").attr("transofrm",t);
+		d3.selectAll(".punto").attr("transform",t);
 	}
 
 });
