@@ -86,7 +86,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	var g = svg.append("g");	
 
 	var zoom = d3.zoom()
-    .scaleExtent([1, 10])
+    .scaleExtent([1, 40])
     .translateExtent([[0, 0], [width, height]])
     .extent([[0, 0], [width, height]])
     .on("zoom", zoomed);
@@ -118,11 +118,13 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
-      }).call(zoom);
+      });
+
+	svg.call(zoom);
 
 
 	function zoomed() {
-		d3.selectAll(".punto").attr("transform", d3.event.transform);
+		d3.selectAll(".punto").attr("transform", d3.event.transform).attr("r",r);
 		ax.call(ejeX.scale(d3.event.transform.rescaleX(x)));
 		ay.call(ejeY.scale(d3.event.transform.rescaleY(y)));
 	}
