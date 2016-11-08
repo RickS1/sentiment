@@ -42,7 +42,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 
 	var color = d3.scaleLinear()
 					.domain([0,1,2,3,4])
-					.range(["#ff0000","#0000ff","#00ff00","#ffff00","#ff00ff"])
+					.range(["#ff0000","#0000ff","#00ff00","#ffff00","#ff00ff"]);
 
 	var ejeX = d3.axisBottom(x)
 							.ticks(8);
@@ -204,6 +204,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	var y = d3.scaleLinear()
 			.domain(d3.extent(data,function(d){return d['following']}))
 			.range([height + 1, -1]);
+
+	var color = d3.scaleLinear()
+					.domain([0,1,2,3,4])
+					.range(["#ff0000","#0000ff","#00ff00","#ffff00","#ff00ff"]);
 
 	var xAxis = d3.axisBottom(x)
 			.ticks((width + 2) / (height + 2) * 10)

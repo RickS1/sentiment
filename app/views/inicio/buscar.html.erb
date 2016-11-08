@@ -205,6 +205,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.domain(d3.extent(data,function(d){return d['following']}))
 			.range([height + 1, -1]);
 
+	var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
 	var color = d3.scaleLinear()
 					.domain([0,1,2,3,4])
 					.range(["#ff0000","#0000ff","#00ff00","#ffff00","#ff00ff"]);
