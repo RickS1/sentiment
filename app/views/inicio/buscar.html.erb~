@@ -230,6 +230,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("class", "axis axis--y")
 			.call(yAxis);
 
+	var r = 3;
+
 	d3.select("button")
 			.on("click", resetted);
 
