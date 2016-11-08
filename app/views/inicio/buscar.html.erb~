@@ -185,11 +185,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.on("zoom", zoomed);
 
 	var x = d3.scaleLinear()
-			.domain(d3.extent(data,function(d){return d['following']}))
+			.domain([-100,d3.max(data,function(d){return d['following']]}))
 			.range([-1, width + 1]);
 
 	var y = d3.scaleLinear()
-			.domain(d3.extent(data,function(d){return d['following']}))
+			.domain([-100,d3.max(data,function(d){return d['following']]}))
 			.range([height + 1, -1]);
 
 	var tooltip = d3.select("body").append("div")
