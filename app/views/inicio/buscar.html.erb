@@ -156,8 +156,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 }
 
 .view {
-  fill: url(#gradient);
-  stroke: #000;
+
 }
 
 button {
@@ -168,21 +167,6 @@ button {
 
 </style>
 <button>Reset</button>
-<svg width="960" height="500">
-  <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop   offset="0.0%" stop-color="#2c7bb6"></stop>
-      <stop  offset="12.5%" stop-color="#00a6ca"></stop>
-      <stop  offset="25.0%" stop-color="#00ccbc"></stop>
-      <stop  offset="37.5%" stop-color="#90eb9d"></stop>
-      <stop  offset="50.0%" stop-color="#ffff8c"></stop>
-      <stop  offset="62.5%" stop-color="#f9d057"></stop>
-      <stop  offset="75.0%" stop-color="#f29e2e"></stop>
-      <stop  offset="87.5%" stop-color="#e76818"></stop>
-      <stop offset="100.0%" stop-color="#d7191c"></stop>
-    </linearGradient>
-  </defs>
-</svg>
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -198,7 +182,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.on("zoom", zoomed);
 
 	var x = d3.scaleLinear()
-			.domain(d3.extent(data,function(d){return d['followers']}))
+			.domain(d3.extent(data,function(d){return d['following']}))
 			.range([-1, width + 1]);
 
 	var y = d3.scaleLinear()
