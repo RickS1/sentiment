@@ -139,6 +139,13 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 
 <style>
 
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+
 .axis path {
   display: none;
 }
@@ -179,64 +186,98 @@ button {
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
+	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
+	var svg = d3.select("svg"),
+			width = +svg.attr("width"),
+			height = +svg.attr("height");
 
-var zoom = d3.zoom()
-    .scaleExtent([1, 40])
-    .translateExtent([[-100, -100], [width + 90, height + 100]])
-    .on("zoom", zoomed);
+	var zoom = d3.zoom()
+			.scaleExtent([1, 1000000])
+			.translateExtent([[-100, -100], [width + 90, height + 100]])
+			.on("zoom", zoomed);
 
-var x = d3.scaleLinear()
-    .domain([-1, width + 1])
-    .range([-1, width + 1]);
+	var x = d3.scaleLinear()
+			.domain(d3.extent(data,function(d){return d['followers']}))
+			.range([-1, width + 1]);
 
-var y = d3.scaleLinear()
-    .domain([-1, height + 1])
-    .range([-1, height + 1]);
+	var y = d3.scaleLinear()
+			.domain(d3.extent(data,function(d){return d['following']}))
+			.range([height + 1, -1]);
 
-var xAxis = d3.axisBottom(x)
-    .ticks((width + 2) / (height + 2) * 10)
-    .tickSize(height)
-    .tickPadding(8 - height);
+	var xAxis = d3.axisBottom(x)
+			.ticks((width + 2) / (height + 2) * 10)
+			.tickSize(height)
+			.tickPadding(8 - height);
 
-var yAxis = d3.axisRight(y)
-    .ticks(10)
-    .tickSize(width)
-    .tickPadding(8 - width);
+	var yAxis = d3.axisRight(y)
+			.ticks(10)
+			.tickSize(width)
+			.tickPadding(8 - width);
 
-var view = svg.append("rect")
-    .attr("class", "view")
-    .attr("x", 0.5)
-    .attr("y", 0.5)
-    .attr("width", width - 1)
-    .attr("height", height - 1);
+	var view = svg.append("rect")
+			.attr("class", "view")
+			.attr("x", 0.5)
+			.attr("y", 0.5)
+			.attr("width", width - 1)
+			.attr("height", height - 1);
 
-var gX = svg.append("g")
-    .attr("class", "axis axis--x")
-    .call(xAxis);
+	var gX = svg.append("g")
+			.attr("class", "axis axis--x")
+			.call(xAxis);
 
-var gY = svg.append("g")
-    .attr("class", "axis axis--y")
-    .call(yAxis);
+	var gY = svg.append("g")
+			.attr("class", "axis axis--y")
+			.call(yAxis);
 
-d3.select("button")
-    .on("click", resetted);
+	d3.select("button")
+			.on("click", resetted);
 
-svg.call(zoom);
+	var points = svg.selectAll(".punto")
+			.data(data)
+			.enter().append("circle")
+			.attr("class", "punto")
+			.attr("r",r)
+			.attr("cx", function(d){ return x(d["followers"])})
+			.attr("cy", function(d){ return y(d["following"])})
+			.attr("stroke", "#dddddd")
+			.attr("stroke-width", 1)
+			.attr("fill", function(d){ 
+				var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
+				ratio = (ratio <= 0.25 ? 0 : (ratio <= 0.5 ? 1 : ( ratio <= 2 ? 2 : ( ratio <= 4 ? 3 : 4))))
+				return color(ratio);
+			})
+			.on("mouseover", function(d) {
+          tooltip.transition()
+               .duration(200)
+               .style("opacity", .9);
+          tooltip.html(d["id"] + "<br/> (" + d["followers"] 
+	        + ", " + d["following"] + ")")
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+          tooltip.transition()
+               .duration(500)
+               .style("opacity", 0);
+      });
 
-function zoomed() {
-  view.attr("transform", d3.event.transform);
-  gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
-  gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
-}
+	svg.call(zoom);
 
-function resetted() {
-  svg.transition()
-      .duration(750)
-      .call(zoom.transform, d3.zoomIdentity);
-}
+	function zoomed() {
+		view.attr("transform", d3.event.transform);
+		gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
+		gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
+		d3.selectAll(".punto").attr("transform",d3.event.transform)
+			.attr("r", r/d3.event.transform.k)
+			.attr("stroke-width",1/d3.event.transform.k);
+	}
 
+	function resetted() {
+		svg.transition()
+			  .duration(750)
+			  .call(zoom.transform, d3.zoomIdentity);
+	}
+});
 </script>
 
