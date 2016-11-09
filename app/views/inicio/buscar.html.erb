@@ -120,8 +120,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 			.attr("text-anchor", "middle")
 			.text("Ayotzinapa");
 
-	var view = svg.append("rect")
+	var view0 = svg.append("rect")
 			.attr("class", "view")
+			.attr("id","rect0")
 			.attr("x", 0.5)
 			.attr("y", 0.5)
 			.attr("width", width - 1)
@@ -179,7 +180,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 	svg.call(zoom);
 
 	function zoomed() {
-		view.attr("transform", d3.event.transform);
+		view0.attr("transform", d3.event.transform);
 		gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
 		gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
 		d3.selectAll(".punto").attr("transform",d3.event.transform)
@@ -261,8 +262,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 			.attr("text-anchor", "middle")
 			.text("Ayotzinapa2Años");
 
-	var view = svg.append("rect")
+	var view1 = svg.append("rect")
 			.attr("class", "view")
+			.attr("id","rect1")
 			.attr("x", 0.5)
 			.attr("y", 0.5)
 			.attr("width", width - 1)
@@ -320,7 +322,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 	svg.call(zoom);
 
 	function zoomed() {
-		view.attr("transform", d3.event.transform);
+		view1.attr("transform", d3.event.transform);
 		gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
 		gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
 		d3.selectAll(".punto").attr("transform",d3.event.transform)
@@ -402,7 +404,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_renunciaya.csv',function(data){
 			.attr("text-anchor", "middle")
 			.text("RenunciaYa");
 
-	var view = svg.append("rect")
+	var view2 = svg.append("rect")
+			.attr("id","rect2")
 			.attr("class", "view")
 			.attr("x", 0.5)
 			.attr("y", 0.5)
@@ -461,7 +464,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_renunciaya.csv',function(data){
 	svg.call(zoom);
 
 	function zoomed() {
-		view.attr("transform", d3.event.transform);
+		view2.attr("transform", d3.event.transform);
 		gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
 		gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
 		d3.selectAll(".punto").attr("transform",d3.event.transform)
