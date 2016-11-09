@@ -92,6 +92,15 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.attr("text-anchor", "middle")
 			.text("Siguiendo");
 
+	var titulo = svg.append("text")
+			.attr("class", "label")
+			.attr("x", width/2)
+			.attr("y", height + 30)
+			.attr("font-size", "14px")
+			.attr("font-style", "bold")
+			.attr("text-anchor", "middle")
+			.text("Ayotzinapa");
+
 	var view = svg.append("rect")
 			.attr("class", "view")
 			.attr("x", 0.5)
