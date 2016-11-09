@@ -211,6 +211,21 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.ticks(10)
 			.tickSize(width)
 			.tickPadding(8 - width);
+			
+	var textx = svg.append("text")
+			.attr("class", "label")
+			.attr("x", width + 60)
+			.attr("y", 0)
+			.attr("text-anchor", "middle")
+			.text("Seguidores");
+		
+	var texty = svg.append("text")
+			.attr("class", "label")
+			.attr("x", 0)
+			.attr("y", height + 60)
+			//.attr("transform", "rotate(-90)")
+			.attr("text-anchor", "middle")
+			.text("Siguiendo");
 
 	var view = svg.append("rect")
 			.attr("class", "view")
