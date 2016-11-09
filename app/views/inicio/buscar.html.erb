@@ -112,8 +112,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	d3.select("button")
 			.on("click", resetted);
 
-	var points = svg.append("g")
-			.attr("clip-path", "url(#clip)")
+	var points = svg//.append("g")
+			//.attr("clip-path", "url(#clip)")
 			.selectAll(".punto")
 			.data(data)
 			.enter().append("circle")
