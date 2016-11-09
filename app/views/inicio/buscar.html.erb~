@@ -129,7 +129,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 
 	var r = 3;
 
-	d3.select("button")
+	d3.select("#b0")
 			.on("click", resetted);
 
 	var points = svg.append("g")
@@ -270,7 +270,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 
 	var r = 3;
 
-	d3.select("button")
+	d3.select("#b1")
 			.on("click", resetted);
 
 	var points = svg.append("g")
@@ -411,7 +411,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_renunciaya.csv',function(data){
 
 	var r = 3;
 
-	d3.select("button")
+	d3.select("#b2")
 			.on("click", resetted);
 
 	var points = svg.append("g")
