@@ -384,7 +384,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_renunciaya.csv',function(data){
 			.attr("y", height + 30)
 			.attr("font-size", 20)
 			.attr("text-anchor", "middle")
-			.text("RenunciaYA");
+			.text("RenunciaYa");
 
 	var view = svg.append("rect")
 			.attr("class", "view")
