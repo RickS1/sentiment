@@ -29,13 +29,21 @@ button {
 }
 
 </style>
-<button>Reset</button>
+<div>
+<button id="b0">Reset</button>
 <svg id="svg0" width="650" height="600">
 </svg>
+</div>
+<div>
+<button id="b1">Reset</button>
 <svg id="svg1" width="650" height="600">
 </svg>
+</div>
+<div>
+<button id="b2">Reset</button>
 <svg id="svg2" width="650" height="600">
 </svg>
+</div>
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
 

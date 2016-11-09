@@ -29,16 +29,18 @@ button {
 }
 
 </style>
-<button>Reset</button>
 <div>
+<button id="b0">Reset</button>
 <svg id="svg0" width="650" height="600">
 </svg>
 </div>
 <div>
+<button id="b1">Reset</button>
 <svg id="svg1" width="650" height="600">
 </svg>
 </div>
 <div>
+<button id="b2">Reset</button>
 <svg id="svg2" width="650" height="600">
 </svg>
 </div>
@@ -127,7 +129,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 
 	var r = 3;
 
-	d3.select("button")
+	d3.select("#b0")
 			.on("click", resetted);
 
 	var points = svg.append("g")
@@ -268,7 +270,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_ayotzinapa2anios.csv',function(data){
 
 	var r = 3;
 
-	d3.select("button")
+	d3.select("#b1")
 			.on("click", resetted);
 
 	var points = svg.append("g")
@@ -409,7 +411,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_renunciaya.csv',function(data){
 
 	var r = 3;
 
-	d3.select("button")
+	d3.select("#b2")
 			.on("click", resetted);
 
 	var points = svg.append("g")
