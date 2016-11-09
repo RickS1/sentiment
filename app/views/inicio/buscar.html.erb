@@ -183,7 +183,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 
 	var zoom = d3.zoom()
 			.scaleExtent([1, 1000000])
-			.translateExtent([[-50, -50], [width + 90, height + 100]])
+			.translateExtent([[-10, -10], [width + 90, height + 100]])
 			.on("zoom", zoomed);
 
 	var x = d3.scaleLinear()
@@ -264,11 +264,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	svg.call(zoom);
 
 	function zoomed() {
-		zoom.translate(panLimit());
 		view.attr("transform", d3.event.transform);
-		console.log("Antes: " + x.domain());
 		gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
-    console.log("Después: " + x.domain());
 		gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
 		d3.selectAll(".punto").attr("transform",d3.event.transform)
 			.attr("r", r/d3.event.transform.k)
@@ -279,34 +276,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 		svg.transition()
 			  .duration(750)
 			  .call(zoom.transform, d3.zoomIdentity);
-	}
-
-	function panLimit() {
-		/*
-	
-		include boolean to work out the panExtent and return to zoom.translate()
-	
-		*/
-
-		var divisor = {h: height / ((y.domain()[1]-y.domain()[0])*zoom.scale()), w: width / ((x.domain()[1]-x.domain()[0])*zoom.scale())},
-			minX = -(((x.domain()[0]-x.domain()[1])*zoom.scale())+(panExtent.x[1]-(panExtent.x[1]-(width/divisor.w)))),
-			minY = -(((y.domain()[0]-y.domain()[1])*zoom.scale())+(panExtent.y[1]-(panExtent.y[1]-(height*(zoom.scale())/divisor.h))))*divisor.h,
-			maxX = -(((x.domain()[0]-x.domain()[1]))+(panExtent.x[1]-panExtent.x[0]))*divisor.w*zoom.scale(),
-			maxY = (((y.domain()[0]-y.domain()[1])*zoom.scale())+(panExtent.y[1]-panExtent.y[0]))*divisor.h*zoom.scale(), 
-
-			tx = x.domain()[0] < panExtent.x[0] ? 
-					minX : 
-					x.domain()[1] > panExtent.x[1] ? 
-						maxX : 
-						zoom.translate()[0],
-			ty = y.domain()[0]  < panExtent.y[0]? 
-					minY : 
-					y.domain()[1] > panExtent.y[1] ? 
-						maxY : 
-						zoom.translate()[1];
-	
-		return [tx,ty];
-
 	}
 
 

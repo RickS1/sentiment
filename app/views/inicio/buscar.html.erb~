@@ -179,6 +179,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			width = 500,
 			height = 500;
 
+	var panExtent = {x: [0,width], y: [-10,height] };
+
 	var zoom = d3.zoom()
 			.scaleExtent([1, 1000000])
 			.translateExtent([[-50, -50], [width + 90, height + 100]])
@@ -263,9 +265,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 
 	function zoomed() {
 		view.attr("transform", d3.event.transform);
-		console.log("Antes: " + x.domain());
 		gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
-    console.log("Después: " + x.domain());
 		gY.call(yAxis.scale(d3.event.transform.rescaleY(y)));
 		d3.selectAll(".punto").attr("transform",d3.event.transform)
 			.attr("r", r/d3.event.transform.k)
