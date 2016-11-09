@@ -28,6 +28,14 @@ button {
   left: 20px;
 }
 
+#b1{
+	top: 620px;
+}
+
+#b2{
+	top: 1220px;
+}
+
 </style>
 <div>
 <button id="b0">Reset</button>
