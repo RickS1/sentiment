@@ -29,7 +29,7 @@ button {
 
 </style>
 <button>Reset</button>
-<svg width="600" height="600">
+<svg width="650" height="600">
 </svg>
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
@@ -53,6 +53,12 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			.domain([-10000,d3.max(data,function(d){return d['following']})])
 			.range([height + 1, -1]);
 
+	svg.append("defs").append("clipPath")
+		  .attr("id", "clip")
+		.append("rect")
+		  .attr("width", width)
+		  .attr("height", height);
+
 	var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
@@ -73,15 +79,15 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 			
 	var textx = svg.append("text")
 			.attr("class", "label")
-			.attr("x", width + 60)
-			.attr("y", 0)
+			.attr("x", width + 50)
+			.attr("y", 20)
 			.attr("text-anchor", "middle")
 			.text("Seguidores");
 		
 	var texty = svg.append("text")
 			.attr("class", "label")
-			.attr("x", 0)
-			.attr("y", height + 60)
+			.attr("x", 50)
+			.attr("y", height + 30)
 			//.attr("transform", "rotate(-90)")
 			.attr("text-anchor", "middle")
 			.text("Siguiendo");
@@ -106,7 +112,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_Ayotzinapa.csv',function(data){
 	d3.select("button")
 			.on("click", resetted);
 
-	var points = svg.selectAll(".punto")
+	var points = svg.append("g")
+			.attr("clip-path", "url(#clip)")
+			.selectAll(".punto")
 			.data(data)
 			.enter().append("circle")
 			.attr("class", "punto")
