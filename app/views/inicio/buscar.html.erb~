@@ -57,7 +57,7 @@ button {
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
 
-d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresdent.csv',function(data){
+d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 	var svg = d3.select("#svg0"),
 			width = 500,
