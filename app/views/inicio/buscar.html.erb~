@@ -70,7 +70,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		d['followers'] = +d['followers']; 
 		d['following'] = +d['following']; 
 		d["posts"] = +d["posts"]; 
-		fecha = new Date(d["desde"].split(" ")); 
+		fecha = new Date(d["desde"].split(" ")[0]); 
 		d["desde"] = new Date(fecha.getTime() + fecha.getTimezoneOffset()*60*1000);
 		d["dias"] = (fecha.getTime() - (new Date()).getTime())/(1000*60*60*24);
 		console.log(d);
