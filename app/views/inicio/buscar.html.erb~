@@ -69,9 +69,12 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	datos.forEach(function(d){
 		d['followers'] = +d['followers']; 
 		d['following'] = +d['following']; 
-		d["posts"] = +d["posts"]; 
-		d["desde"] = new Date(d["desde"].split(" ")[0]);
-		d["dias"] = ( (new Date()).getTime() - d["desde"].getTime())/(1000*60*60*24);
+		d["posts"] = +d["posts"];
+		var fecha = d["desde"].split(" ")[0].split("-");
+		var hoy = (new Date()).toString().split(" ");
+		var f_hoy = new Date(+hoy[3], num2Month(hoy[1]), +hoy[2]);
+		d["desde"] = new Date(fecha[0],fecha[1] - 1, fecha[2]);
+		d["dias"] = ( f_hoy.getTime() - d["desde"].getTime())/(1000*60*60*24);
 		console.log(d);
 	});
 
@@ -212,6 +215,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			  .call(zoom.transform, d3.zoomIdentity);
 	}
 
+	function month2Num(mes){
+		var meses = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		return meses.indexOf(mes);
+	}
 
 });
 
