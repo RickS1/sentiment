@@ -159,7 +159,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var max_posts = d3.max(datos, function(d){ return d["posts"]; });
 
-	var r = 3;
+	var r = 5;
 
 	d3.select("#b0")
 			.on("click", resetted);
@@ -171,7 +171,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.enter().append("circle")
 			.attr("class", "punto")
 			.attr("id",function(d,i){return "punto-" + i})
-			.attr("r",r)
+			.attr("r",function(d,i){ return r*d["posts"]/max_posts; })
 			.attr("cx", function(d){ return x(d["followers"])})
 			.attr("cy", function(d){ return y(d["following"])})
 			.attr("stroke", "#dddddd")
