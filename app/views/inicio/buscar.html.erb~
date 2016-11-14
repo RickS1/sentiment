@@ -58,7 +58,15 @@ button {
 <script>
 
 d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
-	data.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
+	var datos = [];
+	while(datos.length < 250){
+		var index = Math.round(Math.random()*data.length);
+		if(data[index]["posts"] != null){
+			datos.push(data[index]);
+		}
+		data.splice(index,1);
+	}
+	datos.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 	var svg = d3.select("#svg0"),
 			width = 500,
 			height = 500;
@@ -69,11 +77,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.on("zoom", zoomed);
 
 	var x = d3.scaleLinear()
-			.domain(d3.extent(data,function(d){return d['following']}))
+			.domain(d3.extent(datos,function(d){return d['following']}))
 			.range([-1, width + 1]);
 
 	var y = d3.scaleLinear()
-			.domain(d3.extent(data,function(d){return d['following']}))
+			.domain(d3.extent(datos,function(d){return d['following']}))
 			.range([height + 1, -1]);
 
 	svg.append("defs").append("clipPath")
@@ -146,7 +154,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var points = svg.append("g")
 			.attr("clip-path", "url(#clip)")
 			.selectAll(".punto")
-			.data(data)
+			.data(datos)
 			.enter().append("circle")
 			.attr("class", "punto")
 			.attr("id",function(d,i){return "punto-" + i})

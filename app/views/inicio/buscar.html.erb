@@ -59,8 +59,12 @@ button {
 
 d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var datos = [];
-	while(datos.length < 250){
-		datos.push(data[Math.round(Math.random()*data.length)]);
+	while(datos.length < 1000){
+		var index = Math.round(Math.random()*data.length);
+		if(data[index]["posts"] != null){
+			datos.push(data[index]);
+		}
+		data.splice(index,1);
 	}
 	datos.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
 	var svg = d3.select("#svg0"),
