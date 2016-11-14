@@ -61,10 +61,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var datos = [];
 	while(datos.length < 1500){
 		var index = Math.round(Math.random()*data.length);
-		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined || data[index]["posts"] != null)){
+		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined && data[index]["posts"] != null && !isNaN(data[index]["posts"]))){
 			datos.push(data[index]);
 			console.log(data[index]);
-			console.log(new Date(data[index]["desde"]));
+			console.log(new Date(data[index]["desde"].split(" ")[0]));
 		}
 		data.splice(index,1);
 	}

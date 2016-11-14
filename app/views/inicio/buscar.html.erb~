@@ -59,15 +59,16 @@ button {
 
 d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var datos = [];
-	console.log(data[1]);
-	while(datos.length < 1000){
+	while(datos.length < 1500){
 		var index = Math.round(Math.random()*data.length);
 		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined || data[index]["posts"] != null)){
 			datos.push(data[index]);
+			console.log(data[index]);
+			console.log(new Date(data[index]["desde"]));
 		}
 		data.splice(index,1);
 	}
-	datos.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following'];});
+	datos.forEach(function(d){d['followers'] = +d['followers']; d['following'] = +d['following']; d["posts"] = +d["posts"]});
 	var svg = d3.select("#svg0"),
 			width = 500,
 			height = 500;
