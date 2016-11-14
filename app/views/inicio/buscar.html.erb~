@@ -72,9 +72,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		d["posts"] = +d["posts"];
 		var fecha = d["desde"].split(" ")[0].split("-");
 		var hoy = (new Date()).toString().split(" ");
-		var f_hoy = new Date(+hoy[3], num2Month(hoy[1]), +hoy[2]);
+		var f_hoy = new Date(+hoy[3], month2Num(hoy[1]), +hoy[2]);
 		d["desde"] = new Date(fecha[0],fecha[1] - 1, fecha[2]);
-		d["dias"] = ( f_hoy.getTime() - d["desde"].getTime())/(1000*60*60*24);
+		d["dias"] = Math.round(( f_hoy.getTime() - d["desde"].getTime())/(1000*60*60*24));
 		console.log(d);
 	});
 
@@ -156,6 +156,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var gY = svg.append("g")
 			.attr("class", "axis axis--y")
 			.call(yAxis);
+
+	var max_posts = d3.max(datos, function(d){ return d["posts"]; });
 
 	var r = 3;
 
