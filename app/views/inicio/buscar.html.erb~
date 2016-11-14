@@ -62,7 +62,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	console.log(data[1]);
 	while(datos.length < 1000){
 		var index = Math.round(Math.random()*data.length);
-		if(typeof data[index]["posts"] !== undefined || data[index]["posts"] != null){
+		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined || data[index]["posts"] != null)){
 			datos.push(data[index]);
 		}
 		data.splice(index,1);
