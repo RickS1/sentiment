@@ -194,7 +194,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
                .style("top", (d3.event.pageY - 28) + "px");
       })
       .on("mouseout", function(d) {
-					d3.selectAll(".punto").transition().attr("opacity", "").duration(200);
+					d3.selectAll(".punto").transition().attr("opacity", function(d){return d["posts"]/d["dias"]}).duration(200);
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
