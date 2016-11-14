@@ -59,6 +59,7 @@ button {
 
 d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var datos = [];
+	console.log(data[1]);
 	while(datos.length < 1000){
 		var index = Math.round(Math.random()*data.length);
 		if(data[index]["posts"] != null){
