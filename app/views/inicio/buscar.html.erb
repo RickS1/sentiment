@@ -72,6 +72,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{lab: "2 - 4", color: "#ffff00", sum: 0},
 		{lab: ">4", color: "#ff00ff", sum: 0}
 	];
+
+	var total = data.length;
 	
 	data.forEach(function(d){
 		var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
@@ -228,15 +230,31 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var g_pie = d3.pie().value(function(d){return d["sum"]})(porcentajes_usuarios);
 
-	var arco = d3.arc().outerRadius(250).innerRadius(80).padAngle(0.03);
+	var arco = d3.arc().outerRadius(250).innerRadius(125).padAngle(0.03);
 	svg1.append("g").attr("transform","translate(" + width/2 + "," + height/2 +")")
+		.attr("id","centro")
 		.selectAll(".arco_usr")
 		.data(g_pie)
 		.enter().append("g")
 		.attr("class","arco_usr")
 		.append("path")
 		.attr("d",arco)
-		.style("fill", function(d){return d.data["color"]}); 
+		.style("fill", function(d){return d.data["color"]})
+		.on("mouseover",function(d){
+			d3.select("#texto-p")
+			.attr("opacity",1)
+			.text(d["lab"] + ": " + 100*d["sum"]/total + "%");
+		})
+		.on("mouseout",function(d){
+			d3.select("#texto-p")
+			.attr("opacity",0);
+		}); 
+
+	var info_p = d3.select("#centro")
+		.append("text")
+		.attr("id","texto-p")
+		.attr("opacity",0)
+		.attr("text-anchor", "middle");
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
