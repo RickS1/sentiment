@@ -72,6 +72,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{lab: "2 - 4", color: "#ffff00", sum: 0},
 		{lab: ">4", color: "#ff00ff", sum: 0}
 	];
+
+	var total = data.length;
 	
 	data.forEach(function(d){
 		var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
@@ -237,10 +239,22 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("class","arco_usr")
 		.append("path")
 		.attr("d",arco)
-		.style("fill", function(d){return d.data["color"]}); 
+		.style("fill", function(d){return d.data["color"]})
+		.on("mouseover",function(d){
+			d3.select("#texto-p")
+			.attr("opacity",1)
+			.text(d["lab"] + ": " + 100*d["sum"]/total + "%");
+		})
+		.on("mouseout",function(d){
+			d3.select("#texto-p")
+			.attr("opacity",0);
+		}); 
 
 	var info_p = d3.select("#centro")
-		
+		.append("text")
+		.attr("id","texto-p")
+		.attr("opacity",0)
+		.attr("text-anchor", "middle");
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);

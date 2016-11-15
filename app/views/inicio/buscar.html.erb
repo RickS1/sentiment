@@ -243,7 +243,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.on("mouseover",function(d){
 			d3.select("#texto-p")
 			.attr("opacity",1)
-			.text(d["lab"] + ": " + 100*d["sum"]/total + "%");
+			.text(d.data["lab"] + ": " + 100*d.data["sum"]/total + "%");
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p")
