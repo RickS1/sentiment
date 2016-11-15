@@ -193,7 +193,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
                .duration(200)
                .style("opacity", .9);
           tooltip.html(d["id"] + "<br/> (" + d["followers"] 
-	        + ", " + d["following"] + ")")
+	        + ", " + d["following"] + ")<br />"
+					+ "Posts: " + d["posts"] + "<br />" 
+					+ (d["ratio"] < 0.35 ? "Poco activo/Reciente" : (d["ratio"] < 0.65 ? "Regular" : "Muy activo/Spammer")))
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
