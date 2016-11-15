@@ -42,12 +42,11 @@ button {
 <svg id="svg0" width="650" height="600">
 </svg>
 </div>
-<% if false %>
 <div>
-<button id="b1">Reset</button>
 <svg id="svg1" width="650" height="600">
 </svg>
 </div>
+<% if false %>
 <div>
 <button id="b2">Reset</button>
 <svg id="svg2" width="650" height="600">
@@ -152,7 +151,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("y", height + 30)
 			.attr("font-size", 20)
 			.attr("text-anchor", "middle")
-			.text("Ayotzinapa");
+			.text("#TrumpPresident");
 
 	var view0 = svg.append("rect")
 			.attr("class", "view")
@@ -191,7 +190,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("cy", function(d){ return y(d["following"])})
 			.attr("stroke", "#dddddd")
 			.attr("stroke-width", 1)
-			.attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.6 : 1))})
+			.attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.35 : 1))})
 			.attr("fill", function(d){ 
 				var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
 				ratio = (ratio <= 0.25 ? 0 : (ratio <= 0.5 ? 1 : ( ratio <= 2 ? 2 : ( ratio <= 4 ? 3 : 4))))
@@ -203,23 +202,25 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["id"] + "<br/> (" + d["followers"] 
-	        + ", " + d["following"] + ")<br />"
-					+ "Posts: " + d["posts"] + "<br />"
-					+ "Días activo: " + d["dias"] + "<br />"
-					+ "Coeficiente de actividad: " + d["ratio"] + "<br />"
-					+ (d["ratio"] < 1 ? (d["dias"] < 183 ? "Reciente" : "Poco activo") : (d["ratio"] <= 45 ? "Regular" : (d["posts"]/d["followers"] < 20 ? "Muy activo" : "Posible bot/spammer"))))
+          tooltip.html(d["id"] + "<br> (" + d["followers"] 
+	        + ", " + d["following"] + ")<br>"
+					+ "Posts: " + d["posts"] + "<br>"
+					+ "Días activo: " + d["dias"] + "<br>"
+					+ "Coeficiente de actividad: " + d["ratio"] + "<br>"
+					+ (d["ratio"] < 1 ? (d["dias"] < 183 ? "Reciente" : "Poco activo") : (d["ratio"] <= 45 ? "Regular" : (d["posts"]/d["followers"] < 15 ? "Muy activo" : "Posible bot/spammer"))))
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
       .on("mouseout", function(d) {
-					d3.selectAll(".punto").transition().attr("opacity", function(d){return op_i + d["ratio"]/max_ratio}).duration(200);
+					d3.selectAll(".punto").transition().attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.35 : 1))}).duration(200);
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
       });
 
 	svg.call(zoom);
+
+	var svg1 = d3.select("#svg1")
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);

@@ -42,12 +42,11 @@ button {
 <svg id="svg0" width="650" height="600">
 </svg>
 </div>
-<% if false %>
 <div>
-<button id="b1">Reset</button>
 <svg id="svg1" width="650" height="600">
 </svg>
 </div>
+<% if false %>
 <div>
 <button id="b2">Reset</button>
 <svg id="svg2" width="650" height="600">
@@ -66,18 +65,22 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		}
 		data.splice(index,1);
 	}
-	var percent_1 = 0, percent_2 = 0, percent_3 = 0, percent_4 = 0, percent_5 = 0;
+	var porcentajes_usuarios = [
+		{lab: "<1/4", color: "#ff0000", sum: 0},
+		{lab: "1/4 - 1/2", color: "#0000ff", sum: 0},
+		{lab: "1/2 - 2", color: "#00ff00", sum: 0},
+		{lab: "2 - 4", color: "#ffff00", sum: 0},
+		{lab: ">4", color: "#ff00ff", sum: 0}
+	];
 	
 	data.forEach(function(d){
 		var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
-		if(ratio <= 0.25) percent_1 = percent_1 + 1;
-		else if(ratio <= 0.5) percent_2 = percent_2 + 1;
-		else if(ratio <= 2) percent_3 = percent_3 + 1;
-		else if(ratio <= 4) percent_4 = percent_4 + 1;
-		else percent_5 = percent_5 + 1;
+		if(ratio <= 0.25) porcentajes_usuarios[0]["sum"] = porcentajes_usuarios[0]["sum"] + 1;
+		else if(ratio <= 0.5) porcentajes_usuarios[1]["sum"] = porcentajes_usuarios[1]["sum"] + 1;
+		else if(ratio <= 2) porcentajes_usuarios[2]["sum"] = porcentajes_usuarios[2]["sum"] + 1;
+		else if(ratio <= 4) porcentajes_usuarios[3]["sum"] = porcentajes_usuarios[3]["sum"] + 1;
+		else percent_5 = porcentajes_usuarios[4]["sum"] = porcentajes_usuarios[4]["sum"] + 1;
 	});
-
-	console.log("p1: " + percent_1 + "; p2: " + percent_2 + "; p3: " + percent_3 + "; p4: " + percent_4 + "; p5: " + percent_5);
 
 	datos.forEach(function(d){
 		d['followers'] = +d['followers']; 
@@ -152,7 +155,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("y", height + 30)
 			.attr("font-size", 20)
 			.attr("text-anchor", "middle")
-			.text("Ayotzinapa");
+			.text("#TrumpPresident");
 
 	var view0 = svg.append("rect")
 			.attr("class", "view")
@@ -191,7 +194,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("cy", function(d){ return y(d["following"])})
 			.attr("stroke", "#dddddd")
 			.attr("stroke-width", 1)
-			.attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.6 : 1))})
+			.attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.35 : 1))})
 			.attr("fill", function(d){ 
 				var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
 				ratio = (ratio <= 0.25 ? 0 : (ratio <= 0.5 ? 1 : ( ratio <= 2 ? 2 : ( ratio <= 4 ? 3 : 4))))
@@ -203,23 +206,30 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["id"] + "<br/> (" + d["followers"] 
-	        + ", " + d["following"] + ")<br />"
-					+ "Posts: " + d["posts"] + "<br />"
-					+ "Días activo: " + d["dias"] + "<br />"
-					+ "Coeficiente de actividad: " + d["ratio"] + "<br />"
-					+ (d["ratio"] < 1 ? (d["dias"] < 183 ? "Reciente" : "Poco activo") : (d["ratio"] <= 45 ? "Regular" : (d["posts"]/d["followers"] < 20 ? "Muy activo" : "Posible bot/spammer"))))
+          tooltip.html(d["id"] + "<br> (" + d["followers"] 
+	        + ", " + d["following"] + ")<br>"
+					+ "Posts: " + d["posts"] + "<br>"
+					+ "Días activo: " + d["dias"] + "<br>"
+					+ "Coeficiente de actividad: " + d["ratio"] + "<br>"
+					+ (d["ratio"] < 1 ? (d["dias"] < 183 ? "Reciente" : "Poco activo") : (d["ratio"] <= 45 ? "Regular" : (d["posts"]/d["followers"] < 15 ? "Muy activo" : "Posible bot/spammer"))))
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
       .on("mouseout", function(d) {
-					d3.selectAll(".punto").transition().attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.6 : 1))}).duration(200);
+					d3.selectAll(".punto").transition().attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.35 : 1))}).duration(200);
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
       });
 
 	svg.call(zoom);
+
+	var svg1 = d3.select("#svg1");
+
+	var g_pie = d3.pie()(porcentajes_usuarios);
+	console.log(g_pie);
+	var arco = d3.arc(g_pie);
+	console.log(arco);
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
