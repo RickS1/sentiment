@@ -161,7 +161,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var r = 8;
 
-	var op_i = 0.15;
+	var op_i = 0.08;
 
 	var max_ratio = d3.max(datos, function(d){ return d["ratio"]; });
 
@@ -197,7 +197,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 					+ "Posts: " + d["posts"] + "<br />"
 					+ "Días activo: " + d["dias"] + "<br />"
 					+ "Coeficiente de actividad: " + d["ratio"]/max_ratio + "<br />"
-					+ (d["ratio"]/max_ratio < 0.35 ? "Poco activo/Reciente" : (d["ratio"]/max_ratio < 0.65 ? "Regular" : "Muy activo/Spammer")))
+					+ (d["ratio"] < 1 ? (d["dias"] < 183 ? "Reciente" : "Poco activo") : (d["ratio"] <= 100 ? "Regular" : (d["posts"]/d["followers"] > 20 ? "Muy activo" : "Posible bot/spammer"))))
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
