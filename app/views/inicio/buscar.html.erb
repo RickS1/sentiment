@@ -242,8 +242,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.style("fill", function(d){return d.data["color"]})
 		.on("mouseover",function(d){
 			d3.select("#texto-p")
-			.attr("opacity",1)
-			.text(d.data["lab"] + ": " + 100*d.data["sum"]/total + "%");
+				.attr("opacity",1);
+			d3.select("#percentage")
+				.text((100*d.data["sum"]/total).toFixed(2) + "%");
+			d3.select("#lab")
+				.text(d.data["lab"]);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p")
@@ -254,7 +257,17 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.append("text")
 		.attr("id","texto-p")
 		.attr("opacity",0)
-		.attr("text-anchor", "middle");
+		.attr("text-anchor", "middle")
+		.attr("x",0)
+		.attr("y",25)
+		.append("svg:tspan")
+			.attr("id","percentage")
+			.attr("x",0)
+			.attr("dy",7)
+		.append("svg:tspan")
+			.attr("id","label")
+			.attr("x",0)
+			.attr("dy",20);
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
