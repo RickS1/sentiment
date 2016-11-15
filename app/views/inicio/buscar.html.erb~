@@ -242,6 +242,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.style("fill", function(d){return d.data["color"]})
 		.on("mouseover",function(d){
 			d3.select("#texto-p")
+				.transition().duration(300)
 				.attr("opacity",1);
 			d3.select("#percentage")
 				.text((100*d.data["sum"]/total).toFixed(2) + "%");
@@ -250,6 +251,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p")
+			.transition().duration(300)
 			.attr("opacity",0);
 		}); 
 

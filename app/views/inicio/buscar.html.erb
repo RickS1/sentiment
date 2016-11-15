@@ -247,7 +247,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			d3.select("#percentage")
 				.text((100*d.data["sum"]/total).toFixed(2) + "%");
 			d3.select("#label")
-				.text(d.data["lab"]);
+				.text("Usuarios: " + d.data["sum"]);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p")
@@ -261,7 +261,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("opacity",0)
 		.attr("text-anchor", "middle")
 		.attr("x",0)
-		.attr("y",-width/3)
+		.attr("y",-25)
 		.append("svg:tspan")
 			.attr("id","percentage")
 			.attr("x",0)
