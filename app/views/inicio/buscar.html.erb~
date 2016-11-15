@@ -259,15 +259,17 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("opacity",0)
 		.attr("text-anchor", "middle")
 		.attr("x",0)
-		.attr("y",0)
+		.attr("y",-width/3)
 		.append("svg:tspan")
 			.attr("id","percentage")
 			.attr("x",0)
-			.attr("dy",7);
+			.attr("dy",7)
+			.attr("font-size",30);
 		d3.select("#texto-p").append("svg:tspan")
 			.attr("id","label")
 			.attr("x",0)
-			.attr("dy",15);
+			.attr("dy",25)
+			.attr("font-size",22);
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
