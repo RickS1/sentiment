@@ -236,7 +236,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("class","arco_usr")
 		.append("path")
 		.attr("d",arco)
-		.style("fill", function(d){return d["color"]}); 
+		.style("fill", function(d){return d.data["color"]}); 
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);

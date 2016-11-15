@@ -227,8 +227,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var svg1 = d3.select("#svg1");
 
 	var g_pie = d3.pie().value(function(d){return d["sum"]})(porcentajes_usuarios);
-	console.log(g_pie);
-	var arco = d3.arc().outerRadius(250).innerRadius(0);
+
+	var arco = d3.arc().outerRadius(250).innerRadius(80).padAngle(0.03);
 	svg1.append("g").attr("transform","translate(" + width/2 + "," + height/2 +")")
 		.selectAll(".arco_usr")
 		.data(g_pie)
@@ -236,7 +236,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("class","arco_usr")
 		.append("path")
 		.attr("d",arco)
-		.style("fill", function(d){return d.data["color"]}); 
+		.style("fill", function(d){return d.data["color"]})
+		.; 
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
