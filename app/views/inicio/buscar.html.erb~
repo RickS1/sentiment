@@ -333,6 +333,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var arco = d3.arc().outerRadius(185).innerRadius(125).padAngle(0.01);
 	var arco2 = d3.arc().outerRadius(230).innerRadius(185).padAngle(0.005);
+	console.log(g_pie2);
 
 	svg1.append("g").attr("transform","translate(" + width/2 + "," + height/2 +")")
 		.attr("id","centro")
