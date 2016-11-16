@@ -95,8 +95,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 23, lab: ">4 Muy activo", color: "#ff00ff", opacity: 0.9, sum: 0},
 		{i: 24, lab: ">4 Posible bot/spammer", color: "#ff00ff", opacity: 0.9, sum: 0}
 	];
-
-	var total = 0;
 	
 	data.forEach(function(d){
 		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"])){
@@ -180,12 +178,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 					else p_usrs_c[24]["sum"] = p_usrs_c[24]["sum"] + 1;
 				}
 			}
-	
-		total = total + 1;
+
 		}
 
 	});
 
+	var total = 0;
+
+	porcentajes_usuarios.forEach(function(d){total = total + d["sum"]});
+	console.log(total);
+	
 	while(datos.length < 1500){
 		var index = Math.round(Math.random()*data.length);
 		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined && data[index]["posts"] != null && !isNaN(data[index]["posts"]))){
