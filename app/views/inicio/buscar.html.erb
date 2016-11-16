@@ -64,7 +64,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 0, lab: "<1/4", color: "#dc143c", sum: 0},
 		{i: 1, lab: "1/4 - 1/2", color: "#1e90ff", sum: 0},
 		{i: 2, lab: "1/2 - 2", color: "#32CD32", sum: 0},
-		{i: 3, lab: "2 - 4", color: "#ffd700", sum: 0},
+		{i: 3, lab: "2 - 4", color: "#FF8C00", sum: 0},
 		{i: 4, lab: ">4", color: "#9932cc", sum: 0}
 	];
 
@@ -84,11 +84,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 12, lab: "1/2 - 2 Regular", color: "#32CD32", opacity: 0.35, sum: 0},
 		{i: 13, lab: "1/2 - 2 Muy activo", color: "#32CD32", opacity: 0.9, sum: 0},
 		{i: 14, lab: "1/2 - 2 Posible bot/spammer", color: "#32CD32", opacity: 0.9, sum: 0},
-		{i: 15, lab: "2 - 4 Reciente", color: "#ffd700", opacity: 0.1, sum: 0},
-		{i: 16, lab: "2 - 4 Poco activo", color: "#ffd700", opacity: 0.1, sum: 0},
-		{i: 17, lab: "2 - 4 Regular", color: "#ffd700", opacity: 0.35, sum: 0},
-		{i: 18, lab: "2 - 4 Muy activo", color: "#ffd700", opacity: 0.9, sum: 0},
-		{i: 19, lab: "2 - 4 Posible bot/spammer", color: "#ffd700", opacity: 0.9, sum: 0},
+		{i: 15, lab: "2 - 4 Reciente", color: "#FF8C00", opacity: 0.1, sum: 0},
+		{i: 16, lab: "2 - 4 Poco activo", color: "#FF8C00", opacity: 0.1, sum: 0},
+		{i: 17, lab: "2 - 4 Regular", color: "#FF8C00", opacity: 0.35, sum: 0},
+		{i: 18, lab: "2 - 4 Muy activo", color: "#FF8C00", opacity: 0.9, sum: 0},
+		{i: 19, lab: "2 - 4 Posible bot/spammer", color: "#FF8C00", opacity: 0.9, sum: 0},
 		{i: 20, lab: ">4 Reciente", color: "#9932cc", opacity: 0.1, sum: 0},
 		{i: 21, lab: ">4 Poco activo", color: "#9932cc", opacity: 0.1, sum: 0},
 		{i: 22, lab: ">4 Regular", color: "#9932cc", opacity: 0.35, sum: 0},
@@ -225,7 +225,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var color = d3.scaleLinear()
 					.domain([0,1,2,3,4])
-					.range(["#dc143c","#1e90ff","#32CD32","#ffd700","#9932cc"]);
+					.range(["#dc143c","#1e90ff","#32CD32","#FF8C00","#9932cc"]);
 
 	var xAxis = d3.axisBottom(x)
 			.ticks((width + 2) / (height + 2) * 10)

@@ -352,6 +352,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text((100*d.data["sum"]/total).toFixed(2) + "%");
 			d3.select("#label")
 				.text("Usuarios: " + d.data["sum"]);
+			d3.select("#lab")
+				.text(d.data["lab"]);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p")
@@ -376,6 +378,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text((100*d.data["sum"]/total).toFixed(2) + "%");
 			d3.select("#label")
 				.text("Usuarios: " + d.data["sum"]);
+			d3.select("#lab")
+				.text(d.data["lab"]);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p")
@@ -394,12 +398,17 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("id","percentage")
 			.attr("x",0)
 			.attr("dy",7)
-			.attr("font-size",30);
+			.attr("font-size",35);
 		d3.select("#texto-p").append("svg:tspan")
 			.attr("id","label")
 			.attr("x",0)
 			.attr("dy",25)
-			.attr("font-size",22);
+			.attr("font-size",24);
+		d3.select("#texto-p").append("svg:tspan")
+			.attr("id","lab")
+			.attr("x",0)
+			.attr("dy",25)
+			.attr("font-size",24);
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
