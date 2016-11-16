@@ -96,10 +96,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 24, lab: ">4 Posible bot/spammer", color: "#ff00ff", opacity: 0.9, sum: 0}
 	];
 
-	var dataset = [];
+	var total = 0;
 	
 	data.forEach(function(d){
-		if(typeof d["desde"] !== 'undefined'){
+		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"]){
 			d['followers'] = +d['followers']; 
 			d['following'] = +d['following']; 
 			d["posts"] = +d["posts"];
@@ -181,16 +181,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				}
 			}
 	
+		total = total + 1;
 		}
-		else dataset.push(d);
 
 	});
-
-	dataset.forEach(function(d){
-		data.splice(data.indexOf(d),1);
-	});
-
-	var total = data.length;
 
 	while(datos.length < 1500){
 		var index = Math.round(Math.random()*data.length);
