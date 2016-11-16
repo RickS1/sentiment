@@ -1,9 +1,9 @@
 <style>
 
-.tenue { opacity: 0.25; }
-.visible { opacity: 0.55; }
+.tenue { opacity: 0.45; }
+.visible { opacity: 0.65; }
 .opaco { opacity: 0.9; }
-.arco_usr { opacity: 0.7; }
+.arco_usr { opacity: 0.8; }
 
 .tooltip {
   position: absolute;
@@ -349,7 +349,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.append("path")
 		.attr("d",arco)
 		.attr("fill", function(d){return d.data["color"]})
-		.attr("opacity", 0.55)
 		.on("mouseover",function(d,i){
 			d3.select("#texto-p")
 				.transition().duration(300)
@@ -360,15 +359,15 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_usr").style("opacity",0.2);
-			d3.selectAll(".arco_op").style("opacity",0.2)
-			d3.select("#arco_usr-"+i).style("opacity",0.85);
+			d3.selectAll(".arco_usr").attr("opacity",0.2);
+			d3.selectAll(".arco_op").attr("opacity",0.2)
+			d3.select("#arco_usr-"+i).attr("opacity",1);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").attr("style","");
-			d3.selectAll(".arco_op").attr("style","");
+			d3.selectAll(".arco_usr").attr("opacity","");
+			d3.selectAll(".arco_op").attr("opacity","");
 		});
 
 	var arco_op = d3.select("#centro")
@@ -391,16 +390,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_usr").style("opacity",0.2);
-			d3.selectAll(".arco_op").style("opacity",0.2)
-			d3.select("#arco_op-"+i).style("opacity",0.85);
+			d3.selectAll(".arco_usr").attr("opacity",0.2);
+			d3.selectAll(".arco_op").attr("opacity",0.2)
+			d3.select("#arco_op-"+i).attr("opacity",1);
 			
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").attr("style","");
-			d3.selectAll(".arco_op").attr("style","");
+			d3.selectAll(".arco_usr").attr("opacity","");
+			d3.selectAll(".arco_op").attr("opacity","");
 		});
 
 	var info_p = d3.select("#centro")
