@@ -57,6 +57,7 @@ button {
 <script>
 
 d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
+	
 	var datos = [];
 
 	var porcentajes_usuarios = [
@@ -94,8 +95,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 23, lab: ">4 Muy activo", color: "#ff00ff", opacity: 0.9, sum: 0},
 		{i: 24, lab: ">4 Posible bot/spammer", color: "#ff00ff", opacity: 0.9, sum: 0}
 	];
+
+	var dataset = [];
 	
-	data.forEach(function(d,i){
+	data.forEach(function(d){
 		if(typeof d["desde"] !== 'undefined'){
 			d['followers'] = +d['followers']; 
 			d['following'] = +d['following']; 
@@ -179,8 +182,12 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			}
 	
 		}
-		else data.splice(i,1);
+		else dataset.push(d);
 
+	});
+
+	dataset.forEach(function(d){
+		data.splice(data.indexOf(d),1);
 	});
 
 	var total = data.length;
