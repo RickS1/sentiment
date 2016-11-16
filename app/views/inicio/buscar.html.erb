@@ -99,7 +99,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var total = 0;
 	
 	data.forEach(function(d){
-		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"]){
+		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"])){
 			d['followers'] = +d['followers']; 
 			d['following'] = +d['following']; 
 			d["posts"] = +d["posts"];
