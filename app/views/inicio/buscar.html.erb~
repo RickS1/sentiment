@@ -338,17 +338,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var arco = d3.arc().outerRadius(185).innerRadius(125).padAngle(0.01);
 	var arco2 = d3.arc().outerRadius(250).innerRadius(190).padAngle(0.005);
-	console.log(g_pie2);
 
 	svg1.append("g").attr("transform","translate(" + width/2 + "," + height/2 +")")
 		.attr("id","centro")
 		.selectAll(".arco_usr")
 		.data(g_pie)
 		.enter().append("g")
+		.attr("id", function(d,i){return "arco_usr-"+i})
 		.attr("class","arco_usr")
 		.append("path")
 		.attr("d",arco)
-		.attr("id", function(d,i){return "arco_usr-"+i})
 		.attr("fill", function(d){return d.data["color"]})
 		.attr("opacity", 0.55)
 		.on("mouseover",function(d,i){
@@ -368,8 +367,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").removeAttr("style");
-			d3.selectAll(".arco_op").removeAttr("style");
+			d3.selectAll(".arco_usr").attr("style","");
+			d3.selectAll(".arco_op").attr("style","");
 		});
 
 	var arco_op = d3.select("#centro")
@@ -377,9 +376,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.data(g_pie2)
 		.enter().append("g")
 		.attr("class",function(d){ return "arco_op " + (d.data["opacity"] == 0.1 ? "tenue" : (d.data["opacity"] == 0.35 ? "visible" : "opaco"))})
+		.attr("id",function(d,i){return "arco_op-"+i})
 		.append("path")
 		.attr("d",arco2)
-		.attr("id",function(d,i){return "arco_op-"+i})
 		.attr("fill", function(d){return d.data["color"]})
 		.attr("opacity", function(d){return d.data["opacity"]})
 		.on("mouseover",function(d,i){
@@ -400,8 +399,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").removeAttr("style");
-			d3.selectAll(".arco_op").removeAttr("style");
+			d3.selectAll(".arco_usr").attr("style","");
+			d3.selectAll(".arco_op").attr("style","");
 		});
 
 	var info_p = d3.select("#centro")
