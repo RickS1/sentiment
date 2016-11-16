@@ -94,10 +94,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 23, lab: ">4 Muy activo", color: "#ff00ff", opacity: 0.9, sum: 0},
 		{i: 24, lab: ">4 Posible bot/spammer", color: "#ff00ff", opacity: 0.9, sum: 0}
 	];
-
-	var total = data.length;
 	
-	data.forEach(function(d){
+	data.forEach(function(d,i){
 		if(typeof d["desde"] !== 'undefined'){
 			d['followers'] = +d['followers']; 
 			d['following'] = +d['following']; 
@@ -181,8 +179,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			}
 	
 		}
+		else data.splice(i,1);
 
 	});
+
+	var total = data.length;
 
 	while(datos.length < 1500){
 		var index = Math.round(Math.random()*data.length);
