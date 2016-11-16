@@ -358,7 +358,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("d",arco)
 		.attr("class", function(d){
 			var clases = ["crimson", "dodgerblue", "limegreen", "darkorange", "darkorchid"];
-			return clases[Math.floor(d.data["i"] / 5)];
+			return clases[d.data["i"] % 5];
 		})
 		.on("mouseover",function(d,i){
 			d3.select("#texto-p")
@@ -381,7 +381,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.attr("opacity",0);
 			d3.selectAll(".arco_usr").transition().style("opacity","").duration(300);
 			d3.selectAll(".arco_op").transition().style("opacity","").duration(300);
-			d3.selectAll(".punto").style("opacity","").duration(200);
+			d3.selectAll(".punto").transition().style("opacity","").duration(200);
 		});
 
 	var arco_op = d3.select("#centro")
@@ -418,7 +418,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.attr("opacity",0);
 			d3.selectAll(".arco_usr").transition().style("opacity","").duration(300);
 			d3.selectAll(".arco_op").transition().style("opacity","").duration(300);
-			d3.selectAll(".punto").style("opacity","").duration(200);
+			d3.selectAll(".punto").transition().style("opacity","").duration(200);
 		});
 
 	var info_p = d3.select("#centro")
