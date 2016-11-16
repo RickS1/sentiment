@@ -1,9 +1,17 @@
 <style>
 
+/* Opacidades */
 .tenue { opacity: 0.25; }
-.visible { opacity: 0.5; }
+.visible { opacity: 0.45; }
 .opaco { opacity: 0.9; }
 .arco_usr { opacity: 0.8; }
+
+/* Paleta de colores */
+.crimson { fill: 	#DC143C; }
+.dodgerblue { fill: #1E90FF; }
+.limegreen { fill: #32CD32; }
+.darkorange { fill: #FF8C00; }
+.darkorchid { fill: #9932CC; }
 
 .tooltip {
   position: absolute;
@@ -66,39 +74,39 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var datos = [];
 
 	var porcentajes_usuarios = [
-		{i: 0, lab: "<1/4", color: "#dc143c", sum: 0},
-		{i: 1, lab: "1/4 - 1/2", color: "#1e90ff", sum: 0},
-		{i: 2, lab: "1/2 - 2", color: "#32CD32", sum: 0},
-		{i: 3, lab: "2 - 4", color: "#FF8C00", sum: 0},
-		{i: 4, lab: ">4", color: "#9932cc", sum: 0}
+		{i: 0, lab: "<1/4", sum: 0},
+		{i: 1, lab: "1/4 - 1/2", sum: 0},
+		{i: 2, lab: "1/2 - 2", sum: 0},
+		{i: 3, lab: "2 - 4", sum: 0},
+		{i: 4, lab: ">4", sum: 0}
 	];
 
 	var p_usrs_c = [
-		{i: 0, lab: "<1/4 Reciente", color: "#dc143c", opacity: 0.1, sum: 0},
-		{i: 1, lab: "<1/4 Poco activo", color: "#dc143c", opacity: 0.1, sum: 0},
-		{i: 2, lab: "<1/4 Regular", color: "#dc143c", opacity: 0.35, sum: 0},
-		{i: 3, lab: "<1/4 Muy activo", color: "#dc143c", opacity: 0.9, sum: 0},
-		{i: 4, lab: "<1/4 Bot/spammer", color: "#dc143c", opacity: 0.9, sum: 0},
-		{i: 5, lab: "1/4 - 1/2 Reciente", color: "#1e90ff", opacity: 0.1, sum: 0},
-		{i: 6, lab: "1/4 - 1/2 Poco activo", color: "#1e90ff", opacity: 0.1, sum: 0},
-		{i: 7, lab: "1/4 - 1/2 Regular", color: "#1e90ff", opacity: 0.35, sum: 0},
-		{i: 8, lab: "1/4 - 1/2 Muy activo", color: "#1e90ff", opacity: 0.9, sum: 0},
-		{i: 9, lab: "1/4 - 1/2 Bot/spammer", color: "#1e90ff", opacity: 0.9, sum: 0},
-		{i: 10, lab: "1/2 - 2 Reciente", color: "#32CD32", opacity: 0.1, sum: 0},
-		{i: 11, lab: "1/2 - 2 Poco activo", color: "#32CD32", opacity: 0.1, sum: 0},
-		{i: 12, lab: "1/2 - 2 Regular", color: "#32CD32", opacity: 0.35, sum: 0},
-		{i: 13, lab: "1/2 - 2 Muy activo", color: "#32CD32", opacity: 0.9, sum: 0},
-		{i: 14, lab: "1/2 - 2 Bot/spammer", color: "#32CD32", opacity: 0.9, sum: 0},
-		{i: 15, lab: "2 - 4 Reciente", color: "#FF8C00", opacity: 0.1, sum: 0},
-		{i: 16, lab: "2 - 4 Poco activo", color: "#FF8C00", opacity: 0.1, sum: 0},
-		{i: 17, lab: "2 - 4 Regular", color: "#FF8C00", opacity: 0.35, sum: 0},
-		{i: 18, lab: "2 - 4 Muy activo", color: "#FF8C00", opacity: 0.9, sum: 0},
-		{i: 19, lab: "2 - 4 Bot/spammer", color: "#FF8C00", opacity: 0.9, sum: 0},
-		{i: 20, lab: ">4 Reciente", color: "#9932cc", opacity: 0.1, sum: 0},
-		{i: 21, lab: ">4 Poco activo", color: "#9932cc", opacity: 0.1, sum: 0},
-		{i: 22, lab: ">4 Regular", color: "#9932cc", opacity: 0.35, sum: 0},
-		{i: 23, lab: ">4 Muy activo", color: "#9932cc", opacity: 0.9, sum: 0},
-		{i: 24, lab: ">4 Bot/spammer", color: "#9932cc", opacity: 0.9, sum: 0}
+		{i: 0, lab: "<1/4 Reciente", color: "#dc143c", sum: 0},
+		{i: 1, lab: "<1/4 Poco activo", color: "#dc143c", sum: 0},
+		{i: 2, lab: "<1/4 Regular", color: "#dc143c", sum: 0},
+		{i: 3, lab: "<1/4 Muy activo", color: "#dc143c", sum: 0},
+		{i: 4, lab: "<1/4 Bot/spammer", color: "#dc143c", sum: 0},
+		{i: 5, lab: "1/4 - 1/2 Reciente", color: "#1e90ff", sum: 0},
+		{i: 6, lab: "1/4 - 1/2 Poco activo", color: "#1e90ff", sum: 0},
+		{i: 7, lab: "1/4 - 1/2 Regular", color: "#1e90ff", sum: 0},
+		{i: 8, lab: "1/4 - 1/2 Muy activo", color: "#1e90ff", sum: 0},
+		{i: 9, lab: "1/4 - 1/2 Bot/spammer", color: "#1e90ff", sum: 0},
+		{i: 10, lab: "1/2 - 2 Reciente", color: "#32CD32", sum: 0},
+		{i: 11, lab: "1/2 - 2 Poco activo", color: "#32CD32", sum: 0},
+		{i: 12, lab: "1/2 - 2 Regular", color: "#32CD32", sum: 0},
+		{i: 13, lab: "1/2 - 2 Muy activo", color: "#32CD32", sum: 0},
+		{i: 14, lab: "1/2 - 2 Bot/spammer", color: "#32CD32", sum: 0},
+		{i: 15, lab: "2 - 4 Reciente", color: "#FF8C00", sum: 0},
+		{i: 16, lab: "2 - 4 Poco activo", color: "#FF8C00", sum: 0},
+		{i: 17, lab: "2 - 4 Regular", color: "#FF8C00", sum: 0},
+		{i: 18, lab: "2 - 4 Muy activo", color: "#FF8C00", sum: 0},
+		{i: 19, lab: "2 - 4 Bot/spammer", color: "#FF8C00", sum: 0},
+		{i: 20, lab: ">4 Reciente", color: "#9932cc", sum: 0},
+		{i: 21, lab: ">4 Poco activo", color: "#9932cc", sum: 0},
+		{i: 22, lab: ">4 Regular", color: "#9932cc", sum: 0},
+		{i: 23, lab: ">4 Muy activo", color: "#9932cc", sum: 0},
+		{i: 24, lab: ">4 Bot/spammer", color: "#9932cc", sum: 0}
 	];
 	
 	data.forEach(function(d){
@@ -301,15 +309,15 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("cy", function(d){ return y(d["following"])})
 			.attr("stroke", "#dddddd")
 			.attr("stroke-width", 1)
-			.attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 24 ? 0.35 : 0.9))})
-			.attr("fill", function(d){ 
+			.attr("class", function(d){ 
 				var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
-				ratio = (ratio <= 0.25 ? 0 : (ratio <= 0.5 ? 1 : ( ratio <= 2 ? 2 : ( ratio <= 4 ? 3 : 4))))
-				return color(ratio);
+				var opacidad = (d["ratio"] < 1 ? "tenue" : (d["ratio"] <= 24 ? "visible" : "opaco"));
+				ratio = (ratio <= 0.25 ? "crimson" : (ratio <= 0.5 ? "dodgerblue" : ( ratio <= 2 ? "limegreen" : ( ratio <= 4 ? "darkorange" : "darkorchid"))))
+				return ratio + " " + opacidad;
 			})
 			.on("mouseover", function(d,i) {
-					d3.selectAll(".punto").transition().attr("opacity", "0.2").duration(200);
-					d3.select("#punto-"+i).transition().attr("opacity","1").duration(200);
+					d3.selectAll(".punto").transition().style("opacity", "0.2").duration(200);
+					d3.select("#punto-"+i).transition().style("opacity","1").duration(200);
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
@@ -323,7 +331,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
                .style("top", (d3.event.pageY - 28) + "px");
       })
       .on("mouseout", function(d) {
-					d3.selectAll(".punto").transition().attr("opacity", function(d){ return (d["ratio"] < 1 ? 0.1 : (d["ratio"] <= 45 ? 0.35 : 0.9))}).duration(200);
+					d3.selectAll(".punto").transition().style("opacity", "").duration(200);
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
@@ -348,7 +356,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("class","arco_usr")
 		.append("path")
 		.attr("d",arco)
-		.attr("fill", function(d){return d.data["color"]})
+		.attr("class", function(d){
+			var clases = ["crimson", "dodgerblue", "limegreen", "darkorange", "darkorchid"];
+			return clases[Math.floor(d.data["i"] / 5)];
+		})
 		.on("mouseover",function(d,i){
 			d3.select("#texto-p")
 				.transition().duration(300)
@@ -359,26 +370,29 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_usr").style("opacity",0.2);
-			d3.selectAll(".arco_op").style("opacity",0.2)
-			d3.select("#arco_usr-"+i).style("opacity",1);
+			d3.selectAll(".arco_usr").transition().duration(300).style("opacity",0.2);
+			d3.selectAll(".arco_op").transition().duration(300).style("opacity",0.2)
+			d3.select("#arco_usr-"+i).transition().duration(300).style("opacity",1);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").style("opacity","");
-			d3.selectAll(".arco_op").style("opacity","");
+			d3.selectAll(".arco_usr").transition().duration(300).style("opacity","");
+			d3.selectAll(".arco_op").transition().duration(300).style("opacity","");
 		});
 
 	var arco_op = d3.select("#centro")
 		.selectAll(".arco_op")
 		.data(g_pie2)
 		.enter().append("g")
-		.attr("class",function(d){ return "arco_op " + (d.data["opacity"] == 0.1 ? "tenue" : (d.data["opacity"] == 0.35 ? "visible" : "opaco"))})
+		.attr("class",function(d){ return "arco_op " + (d.data["i"] % 5 < 2 ? "tenue" : (d.data["i"] >2 ? "opaco" : "visible"))})
 		.attr("id",function(d,i){return "arco_op-"+i})
 		.append("path")
 		.attr("d",arco2)
-		.attr("fill", function(d){return d.data["color"]})
+		.attr("class", function(d){
+			var clases = ["crimson", "dodgerblue", "limegreen", "darkorange", "darkorchid"];
+			return clases[Math.floor(d.data["i"] / 5)];
+		})
 		.on("mouseover",function(d,i){
 			d3.select("#texto-p")
 				.transition().duration(300)
@@ -389,16 +403,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_usr").style("opacity",0.2);
-			d3.selectAll(".arco_op").style("opacity",0.2)
-			d3.select("#arco_op-"+i).style("opacity",1);
+			d3.selectAll(".arco_usr").transition().duration(300).style("opacity",0.2);
+			d3.selectAll(".arco_op").transition().duration(300).style("opacity",0.2)
+			d3.select("#arco_op-"+i).transition().duration(300).style("opacity",1);
 			
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").style("opacity","");
-			d3.selectAll(".arco_op").style("opacity","");
+			d3.selectAll(".arco_usr").transition().duration(300).style("opacity","");
+			d3.selectAll(".arco_op").transition().duration(300).style("opacity","");
 		});
 
 	var info_p = d3.select("#centro")
