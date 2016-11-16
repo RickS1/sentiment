@@ -1,5 +1,9 @@
 <style>
 
+.tenue { opacity: 0.1; }
+.visible { opacity: 0.35; }
+.opaco { opacity: 0.9; } 
+
 .tooltip {
   position: absolute;
   width: 200px;
@@ -356,26 +360,22 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_op").transition().duration(300)
-				.attr("opacity",0.2);
-			d3.selectAll(".arco_usr").transition().duration(300)
-				.attr("opacity",0.2);
-			d3.select("#arco_usr-"+i).transition().duration(300).attr("opacity", 0.85);
+			d3.selectAll(".arco_usr").attr("opacity",0.2);
+			d3.selectAll(".arco_op").attr("opacity",0.2)
+			d3.select("#arco_usr-"+i).attr("opacity",0.85);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").transition().duration(300)
-				.attr("opacity","");
-			d3.selectAll(".arco_op").transition().duration(300)
-				.attr("opacity","");
+			d3.selectAll(".arco_usr").attr("opacity","");
+			d3.selectAll(".arco_op").attr("opacity","");
 		});
 
 	var arco_op = d3.select("#centro")
 		.selectAll(".arco_op")
 		.data(g_pie2)
 		.enter().append("g")
-		.attr("class","arco_op")
+		.attr("class",function(d){ return "arco_op" + (d.data["opacity"] == 0.1 ? "tenue" : (d.data["opacity"] == 0.35 ? "visible" : "opaco"))})
 		.append("path")
 		.attr("d",arco2)
 		.attr("id",function(d,i){return "arco_op-"+i})
@@ -391,20 +391,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_op").transition().duration(300)
-				.attr("opacity",0.2);
-			d3.selectAll(".arco_usr").transition().duration(300)
-				.attr("opacity",0.2);
-			d3.select("#arco_op-"+i).transition().duration(300).attr("opacity", 0.85);
+			d3.selectAll(".arco_usr").attr("opacity",0.2);
+			d3.selectAll(".arco_op").attr("opacity",0.2)
+			d3.select("#arco_op-"+i).attr("opacity",0.85);
 			
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").transition().duration(300)
-				.attr("opacity","");
-			d3.selectAll(".arco_op").transition().duration(300)
-				.attr("opacity","");
+			d3.selectAll(".arco_usr").attr("opacity","");
+			d3.selectAll(".arco_op").attr("opacity","");
 		});
 
 	var info_p = d3.select("#centro")
