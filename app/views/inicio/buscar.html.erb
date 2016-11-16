@@ -361,7 +361,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("class","arco_usr_c")
 		.append("path")
 		.attr("d",arco2)
-		.style({"fill": function(d){return d.data["color"]}, "opacity": function(d){return d.data["opacity"]}})
+		.attr("fill", function(d){return d.data["color"]})
+		.attr("opacity", function(d){return d.data["opacity"]})
 		.on("mouseover",function(d){
 			d3.select("#texto-p")
 				.transition().duration(300)
