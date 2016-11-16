@@ -368,8 +368,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").removeAttr("style");
-			d3.selectAll(".arco_op").removeAttr("style");
+			d3.selectAll(".arco_usr").attr("style","");
+			d3.selectAll(".arco_op").attr("style","");
 		});
 
 	var arco_op = d3.select("#centro")
@@ -400,8 +400,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").removeAttr("style");
-			d3.selectAll(".arco_op").removeAttr("style");
+			d3.selectAll(".arco_usr").attr("style","");
+			d3.selectAll(".arco_op").attr("style","");
 		});
 
 	var info_p = d3.select("#centro")
