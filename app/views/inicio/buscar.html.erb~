@@ -58,13 +58,7 @@ button {
 
 d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var datos = [];
-	while(datos.length < 1500){
-		var index = Math.round(Math.random()*data.length);
-		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined && data[index]["posts"] != null && !isNaN(data[index]["posts"]))){
-			datos.push(data[index]);
-		}
-		data.splice(index,1);
-	}
+
 	var porcentajes_usuarios = [
 		{lab: "<1/4", color: "#ff0000", sum: 0},
 		{lab: "1/4 - 1/2", color: "#0000ff", sum: 0},
@@ -73,18 +67,37 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{lab: ">4", color: "#ff00ff", sum: 0}
 	];
 
+	var p_usrs_c = [
+		{lab: "<1/4 Reciente", color: "#ff0000", opacity: 0.1, sum: 0},
+		{lab: "<1/4 Poco activo", color: "#ff0000", opacity: 0.1, sum: 0},
+		{lab: "<1/4 Regular", color: "#ff0000", opacity: 0.35, sum: 0},
+		{lab: "<1/4 Muy activo", color: "#ff0000", opacity: 0.9, sum: 0},
+		{lab: "<1/4 Posible bot/spammer", color: "#ff0000", opacity: 0.9, sum: 0},
+		{lab: "1/4 - 1/2 Reciente", color: "#0000ff", opacity: 0.1, sum: 0},
+		{lab: "1/4 - 1/2 Poco activo", color: "#0000ff", opacity: 0.1, sum: 0},
+		{lab: "1/4 - 1/2 Regular", color: "#0000ff", opacity: 0.35, sum: 0},
+		{lab: "1/4 - 1/2 Muy activo", color: "#0000ff", opacity: 0.9, sum: 0},
+		{lab: "1/4 - 1/2 Posible bot/spammer", color: "#0000ff", opacity: 0.9, sum: 0},
+		{lab: "1/2 - 2 Reciente", color: "#00ff00", opacity: 0.1, sum: 0},
+		{lab: "1/2 - 2 Poco activo", color: "#00ff00", opacity: 0.1, sum: 0},
+		{lab: "1/2 - 2 Regular", color: "#00ff00", opacity: 0.35, sum: 0},
+		{lab: "1/2 - 2 Muy activo", color: "#00ff00", opacity: 0.9, sum: 0},
+		{lab: "1/2 - 2 Posible bot/spammer", color: "#00ff00", opacity: 0.9, sum: 0},
+		{lab: "2 - 4 Reciente", color: "#ffff00", opacity: 0.1, sum: 0},
+		{lab: "2 - 4 Poco activo", color: "#ffff00", opacity: 0.1, sum: 0},
+		{lab: "2 - 4 Regular", color: "#ffff00", opacity: 0.35, sum: 0},
+		{lab: "2 - 4 Muy activo", color: "#ffff00", opacity: 0.9, sum: 0},
+		{lab: "2 - 4 Posible bot/spammer", color: "#ffff00", opacity: 0.9, sum: 0},
+		{lab: ">4 Reciente", color: "#ff00ff", opacity: 0.1, sum: 0},
+		{lab: ">4 Poco activo", color: "#ff00ff", opacity: 0.1, sum: 0},
+		{lab: ">4 Regular", color: "#ff00ff", opacity: 0.35, sum: 0},
+		{lab: ">4 Muy activo", color: "#ff00ff", opacity: 0.9, sum: 0},
+		{lab: ">4 Posible bot/spammer", color: "#ff00ff", opacity: 0.9, sum: 0}
+	];
+
 	var total = data.length;
 	
 	data.forEach(function(d){
-		var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
-		if(ratio <= 0.25) porcentajes_usuarios[0]["sum"] = porcentajes_usuarios[0]["sum"] + 1;
-		else if(ratio <= 0.5) porcentajes_usuarios[1]["sum"] = porcentajes_usuarios[1]["sum"] + 1;
-		else if(ratio <= 2) porcentajes_usuarios[2]["sum"] = porcentajes_usuarios[2]["sum"] + 1;
-		else if(ratio <= 4) porcentajes_usuarios[3]["sum"] = porcentajes_usuarios[3]["sum"] + 1;
-		else percent_5 = porcentajes_usuarios[4]["sum"] = porcentajes_usuarios[4]["sum"] + 1;
-	});
-
-	datos.forEach(function(d){
 		d['followers'] = +d['followers']; 
 		d['following'] = +d['following']; 
 		d["posts"] = +d["posts"];
@@ -94,7 +107,87 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		d["desde"] = new Date(fecha[0],fecha[1] - 1, fecha[2]);
 		d["dias"] = Math.round(( f_hoy.getTime() - d["desde"].getTime())/(1000*60*60*24));
 		d["ratio"] = d["posts"]/d["dias"];
+
+		var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
+		if(ratio <= 0.25){
+			porcentajes_usuarios[0]["sum"] = porcentajes_usuarios[0]["sum"] + 1;
+
+			if(d["ratio"] < 1){
+				if(d["dias"] < 183) p_usrs_c[0]["sum"] = p_usrs_c[0]["sum"] + 1;
+				else p_usrs_c[1]["sum"] = p_usrs_c[1]["sum"] + 1;
+			}
+			else if(d["ratio"] >= 1 && d["ratio"] <= 24) p_usrs_c[2]["sum"] = p_usrs_c[2]["sum"] + 1;
+			else{
+				if(d["posts"]/d["followers"] < 15) p_usrs_c[3]["sum"] = p_usrs_c[3]["sum"] + 1;
+				else p_usrs_c[4]["sum"] = p_usrs_c[4]["sum"] + 1;
+			}
+		}
+
+		else if(ratio <= 0.5){
+			porcentajes_usuarios[1]["sum"] = porcentajes_usuarios[1]["sum"] + 1;
+
+			if(d["ratio"] < 1){
+				if(d["dias"] < 183) p_usrs_c[5]["sum"] = p_usrs_c[5]["sum"] + 1;
+				else p_usrs_c[6]["sum"] = p_usrs_c[6]["sum"] + 1;
+			}
+			else if(d["ratio"] >= 1 && d["ratio"] <= 24) p_usrs_c[7]["sum"] = p_usrs_c[7]["sum"] + 1;
+			else{
+				if(d["posts"]/d["followers"] < 15) p_usrs_c[8]["sum"] = p_usrs_c[8]["sum"] + 1;
+				else p_usrs_c[9]["sum"] = p_usrs_c[9]["sum"] + 1;
+			}
+		}
+
+		else if(ratio <= 2){
+			porcentajes_usuarios[2]["sum"] = porcentajes_usuarios[2]["sum"] + 1;
+
+			if(d["ratio"] < 1){
+				if(d["dias"] < 183) p_usrs_c[10]["sum"] = p_usrs_c[10]["sum"] + 1;
+				else p_usrs_c[11]["sum"] = p_usrs_c[11]["sum"] + 1;
+			}
+			else if(d["ratio"] >= 1 && d["ratio"] <= 24) p_usrs_c[12]["sum"] = p_usrs_c[12]["sum"] + 1;
+			else{
+				if(d["posts"]/d["followers"] < 15) p_usrs_c[13]["sum"] = p_usrs_c[13]["sum"] + 1;
+				else p_usrs_c[14]["sum"] = p_usrs_c[14]["sum"] + 1;
+			}
+		}
+
+		else if(ratio <= 4){
+			porcentajes_usuarios[3]["sum"] = porcentajes_usuarios[3]["sum"] + 1;
+
+			if(d["ratio"] < 1){
+				if(d["dias"] < 183) p_usrs_c[15]["sum"] = p_usrs_c[15]["sum"] + 1;
+				else p_usrs_c[16]["sum"] = p_usrs_c[16]["sum"] + 1;
+			}
+			else if(d["ratio"] >= 1 && d["ratio"] <= 24) p_usrs_c[17]["sum"] = p_usrs_c[17]["sum"] + 1;
+			else{
+				if(d["posts"]/d["followers"] < 15) p_usrs_c[18]["sum"] = p_usrs_c[18]["sum"] + 1;
+				else p_usrs_c[19]["sum"] = p_usrs_c[19]["sum"] + 1;
+			}
+		}
+
+		else{
+			porcentajes_usuarios[4]["sum"] = porcentajes_usuarios[4]["sum"] + 1;
+
+			if(d["ratio"] < 1){
+				if(d["dias"] < 183) p_usrs_c[20]["sum"] = p_usrs_c[20]["sum"] + 1;
+				else p_usrs_c[21]["sum"] = p_usrs_c[21]["sum"] + 1;
+			}
+			else if(d["ratio"] >= 1 && d["ratio"] <= 24) p_usrs_c[22]["sum"] = p_usrs_c[22]["sum"] + 1;
+			else{
+				if(d["posts"]/d["followers"] < 15) p_usrs_c[23]["sum"] = p_usrs_c[23]["sum"] + 1;
+				else p_usrs_c[24]["sum"] = p_usrs_c[24]["sum"] + 1;
+			}
+		}
+
 	});
+
+	while(datos.length < 1500){
+		var index = Math.round(Math.random()*data.length);
+		if(+data[index]["followers"] < 2500 && +data[index]["following"] < 2500 && (typeof data[index]["posts"] !== undefined && data[index]["posts"] != null && !isNaN(data[index]["posts"]))){
+			datos.push(data[index]);
+		}
+		data.splice(index,1);
+	}
 
 	var svg = d3.select("#svg0"),
 			width = 500,
@@ -229,8 +322,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var svg1 = d3.select("#svg1");
 
 	var g_pie = d3.pie().value(function(d){return d["sum"]})(porcentajes_usuarios);
+	var g_pie2 = d3.pie().value(function(d){return d["sum"]})(p_usrs_c);
 
-	var arco = d3.arc().outerRadius(250).innerRadius(125).padAngle(0.03);
+	var arco = d3.arc().outerRadius(185).innerRadius(125).padAngle(0.03);
+	var arco2 = d3.arc().outerRadius(230).innerRadius(185).padAngle(0.03);
+
 	svg1.append("g").attr("transform","translate(" + width/2 + "," + height/2 +")")
 		.attr("id","centro")
 		.selectAll(".arco_usr")
@@ -253,7 +349,30 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			d3.select("#texto-p")
 			.transition().duration(300)
 			.attr("opacity",0);
-		}); 
+		});
+
+	var arco_op = d3.select("#centro")
+		.selectAll(".arco_op")
+		.data(g_pie2)
+		.enter().append("g")
+		.attr("class","arco_usr_c")
+		.append("path")
+		.attr("d",arco2)
+		.style({"fill": function(d){return d.data["color"]}, "opacity": function(d){return d.data["opacity"]}})
+		.on("mouseover",function(d){
+			d3.select("#texto-p")
+				.transition().duration(300)
+				.attr("opacity",1);
+			d3.select("#percentage")
+				.text((100*d.data["sum"]/total).toFixed(2) + "%");
+			d3.select("#label")
+				.text("Usuarios: " + d.data["sum"]);
+		})
+		.on("mouseout",function(d){
+			d3.select("#texto-p")
+			.transition().duration(300)
+			.attr("opacity",0);
+		});
 
 	var info_p = d3.select("#centro")
 		.append("text")
