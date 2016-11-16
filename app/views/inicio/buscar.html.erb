@@ -312,7 +312,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				var ratio = (d["following"] > 0 ? d["followers"]/d["following"] : d["followers"]);
 				var opacidad = (d["ratio"] < 1 ? "tenue" : (d["ratio"] <= 24 ? "visible" : "opaco"));
 				ratio = (ratio <= 0.25 ? "crimson" : (ratio <= 0.5 ? "dodgerblue" : ( ratio <= 2 ? "limegreen" : ( ratio <= 4 ? "darkorange" : "darkorchid"))));
-				var act = (d["ratio"] < 1 ? (d["dias"] < 183 ? "rec" : "l_act") : (d["ratio"] <= 24 ? "reg" : (d["posts"]/d["followers"] < 15 ? "v_act" : "bot"))))
+				var act = (d["ratio"] < 1 ? (d["dias"] < 183 ? "rec" : "l_act") : (d["ratio"] <= 24 ? "reg" : (d["posts"]/d["followers"] < 15 ? "v_act" : "bot")));
 				return "punto " + ratio + " " + opacidad + " " + act;
 			})
 			.on("mouseover", function(d,i) {
