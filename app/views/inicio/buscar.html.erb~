@@ -2,7 +2,8 @@
 
 .tenue { opacity: 0.1; }
 .visible { opacity: 0.35; }
-.opaco { opacity: 0.9; } 
+.opaco { opacity: 0.9; }
+.arco_usr { opacity: 0.55; }
 
 .tooltip {
   position: absolute;

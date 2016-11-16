@@ -361,15 +361,15 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_usr").attr("opacity",0.2);
-			d3.selectAll(".arco_op").attr("opacity",0.2)
-			d3.select("#arco_usr-"+i).attr("opacity",0.85);
+			d3.selectAll(".arco_usr").style("opacity",0.2);
+			d3.selectAll(".arco_op").style("opacity",0.2)
+			d3.select("#arco_usr-"+i).style("opacity",0.85);
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").attr("opacity","");
-			d3.selectAll(".arco_op").attr("opacity","");
+			d3.selectAll(".arco_usr").removeAttr("style");
+			d3.selectAll(".arco_op").removeAttr("style");
 		});
 
 	var arco_op = d3.select("#centro")
@@ -392,16 +392,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				.text("Usuarios: " + d.data["sum"]);
 			d3.select("#lab")
 				.text(d.data["lab"]);
-			d3.selectAll(".arco_usr").attr("opacity",0.2);
-			d3.selectAll(".arco_op").attr("opacity",0.2)
-			d3.select("#arco_op-"+i).attr("opacity",0.85);
+			d3.selectAll(".arco_usr").style("opacity",0.2);
+			d3.selectAll(".arco_op").style("opacity",0.2)
+			d3.select("#arco_op-"+i).style("opacity",0.85);
 			
 		})
 		.on("mouseout",function(d){
 			d3.select("#texto-p").transition().duration(300)
 				.attr("opacity",0);
-			d3.selectAll(".arco_usr").attr("opacity","");
-			d3.selectAll(".arco_op").attr("opacity","");
+			d3.selectAll(".arco_usr").removeAttr("style");
+			d3.selectAll(".arco_op").removeAttr("style");
 		});
 
 	var info_p = d3.select("#centro")
