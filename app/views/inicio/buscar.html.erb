@@ -2,7 +2,8 @@
 
 .tenue { opacity: 0.1; }
 .visible { opacity: 0.35; }
-.opaco { opacity: 0.9; } 
+.opaco { opacity: 0.9; }
+.arco_usr { opacity: 0.55; }
 
 .tooltip {
   position: absolute;
@@ -375,7 +376,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.selectAll(".arco_op")
 		.data(g_pie2)
 		.enter().append("g")
-		.attr("class",function(d){ return "arco_op" + (d.data["opacity"] == 0.1 ? "tenue" : (d.data["opacity"] == 0.35 ? "visible" : "opaco"))})
+		.attr("class",function(d){ return "arco_op " + (d.data["opacity"] == 0.1 ? "tenue" : (d.data["opacity"] == 0.35 ? "visible" : "opaco"))})
 		.append("path")
 		.attr("d",arco2)
 		.attr("id",function(d,i){return "arco_op-"+i})
