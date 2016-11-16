@@ -1,7 +1,7 @@
 <style>
 
-.tenue { opacity: 0.1; }
-.visible { opacity: 0.35; }
+.tenue { opacity: 0.25; }
+.visible { opacity: 0.55; }
 .opaco { opacity: 0.9; }
 .arco_usr { opacity: 0.55; }
 
