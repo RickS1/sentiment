@@ -471,6 +471,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	usr_langs.forEach(function(d){
 		idiomas.push(d["lab"]);
 	});
+	console.log(idiomas);
 
 	var x_lang = d3.scaleBand()
 		.domain(idiomas)
