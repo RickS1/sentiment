@@ -108,10 +108,19 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 23, lab: ">4 Muy activo", color: "#9932cc", sum: 0},
 		{i: 24, lab: ">4 Bot/spammer", color: "#9932cc", sum: 0}
 	];
+
+	var idiomas = [], c_idiomas = [];
 	
 	data.forEach(function(d){
 		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"])){
-			if(typeof d["idioma"] !== 'undefined') console.log(d["idioma"]);
+			if(typeof d["idioma"] !== 'undefined'){
+				var indice = idiomas.indexOf(d["idioma"]
+				if(indice) < 0){
+					idiomas.push(d["idioma"]);
+					c_idiomas.push(1);
+				}
+				else c_idiomas[indice] = c_idiomas[indice] + 1;
+			}
 			d['followers'] = +d['followers']; 
 			d['following'] = +d['following'];
 			d["posts"] = +d["posts"];
@@ -196,6 +205,14 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		}
 
 	});
+
+	var usr_langs = [];
+
+	idiomas.forEach(function(d,i){
+		usr_langs.push({i: i, lab: d, sum: c_idiomas[i]});
+	});
+
+	console.log(usr_langs);
 
 	var total = 0;
 
