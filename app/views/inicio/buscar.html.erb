@@ -471,9 +471,14 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	usr_langs = usr_langs.sort(function(a,b){ return b["sum"] - a["sum"] });
 	idiomas = [];
+	total_langs = 0;
 	usr_langs.forEach(function(d){
 		idiomas.push(d["lab"]);
+		total_langs = total_langs + d["sum"];
 	});
+
+	var width_l = 700,
+		height_l = height;
 
 	var x_lang = d3.scaleBand()
 		.domain(idiomas)
@@ -485,7 +490,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var max_lang = d3.max(usr_langs,function(d){return d["sum"]});
 
 	var y_lang = d3.scaleLinear()
-		.domain([0, max_lang/4])
+		.domain([0, max_lang/5])
 		.range([height-margen,0]);
 
 	var xAxis_lang = d3.axisBottom(x_lang)
@@ -495,7 +500,19 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.ticks(10)
 			.tickSize(700)
 			.tickFormat(function(d){return d/1000})
-			.tickPadding(8 - width);
+			.tickPadding(8 - 700);
+
+	var tx_lang = svg2.append("text")
+			.attr("class", "label")
+			.attr("transform", "translate(" + (width/2) + "," + (height-(margen/2)) + ")")
+			.attr("text-anchor", "middle")
+			.text("Idioma");
+		
+	var ty_lang = svg2.append("text")
+			.attr("class", "label")
+			.attr("transform", "rotate(-90) translate(" + ((margen/2) - height) + "," + (-margen) ")")
+			.attr("text-anchor", "middle")
+			.text("Cantidad (miles)");
 
 	svg2.append("g")
 		.attr("id","ejex-lang")
@@ -523,14 +540,14 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     	.attr("height", function(d){ return height-margen-y_lang(d["sum"]); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
 			.attr("y", function(d){ return -height+margen+y_lang(d["sum"])})
-			.attr("fill",function(d){ return color((4*d["sum"]/max_lang >= 1 ? 1 : 4*d["sum"]/max_lang ))})
+			.attr("fill",function(d){ return color((5*d["sum"]/max_lang >= 1 ? 1 : 5*d["sum"]/max_lang ))})
 			.on("mouseover", function(d,i) {
 					d3.selectAll(".barra-lang").transition().style("opacity", "0.2").duration(200);
 					d3.select("#b_lang-"+d["lab"]).transition().style("opacity","1").duration(200);
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["lab"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/max_lang).toFixed(2) + "%")
+          tooltip.html(d["lab"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/total_langs).toFixed(2) + "%")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
