@@ -16,6 +16,7 @@
 /* Ejes de barchart */
 #ejex-lang path, #ejey-lang path { opacity: 0; }
 #ejey-lang>.tick { opacity: 0.45; }
+#ejex-lang>.tick { opacity: 0; }
 
 
 .tooltip {
@@ -528,7 +529,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["lab"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + d["sum"]/max_lang)
+          tooltip.html(d["lab"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/max_lang).toFixed(2) + "%")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
