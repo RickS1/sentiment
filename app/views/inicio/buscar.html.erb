@@ -565,7 +565,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
                .style("opacity", 0);
       });
 
-		d3.selectAll("#ejey-lang.tick ine").attr("x2","-670");
+		d3.selectAll("#ejey-lang")._groups[0][0].childNodes.forEach(function(d,i){if(i==0) return false; d.childNodes[0].setAttribute("x2","-670")});
 
 	//Funciones auxiliares
 
