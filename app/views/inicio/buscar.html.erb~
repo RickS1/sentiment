@@ -14,7 +14,8 @@
 .darkorchid { fill: #9932CC; }
 
 /* Ejes de barchart */
-#ejex-lang path, #ejey-lang path { opacity: 0; }
+#ejex-lang path { opacity: 0.2; }
+#ejey-lang path { opacity: 0; }
 #ejey-lang>.tick { opacity: 0.45; }
 #ejex-lang>.tick { opacity: 0; }
 
