@@ -15,7 +15,7 @@
 
 /* Ejes de barchart */
 #ejex-lang path, #ejey-lang path { opacity: 0; }
-#ejey-lang.tick { opacity: 0.45; }
+#ejey-lang>.tick { opacity: 0.45; }
 
 
 .tooltip {
@@ -259,10 +259,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-	var color = d3.scaleLinear()
-					.domain([0,1,2,3,4])
-					.range(["#dc143c","#1e90ff","#32CD32","#FF8C00","#9932cc"]);
-
 	var xAxis = d3.axisBottom(x)
 			.ticks((width + 2) / (height + 2) * 10)
 			.tickSize(height)
@@ -476,7 +472,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	usr_langs.forEach(function(d){
 		idiomas.push(d["lab"]);
 	});
-	console.log(idiomas);
 
 	var x_lang = d3.scaleBand()
 		.domain(idiomas)
@@ -485,8 +480,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     .paddingOuter([0.3])
     .align([0.5]);
 
+	var max_lang = d3.max(usr_langs,function(d){return d["sum"]});
+
 	var y_lang = d3.scaleLinear()
-		.domain([0, d3.max(usr_langs,function(d){return d["sum"];})/3])
+		.domain([0, max_lang/3])
 		.range([height-margen,0]);
 
 	var xAxis_lang = d3.axisBottom(x_lang)
@@ -495,41 +492,22 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var yAxis_lang = d3.axisRight(y_lang)
 			.ticks(10)
 			.tickSize(700)
-			.tickFormat(function(d){return d["sum"]/1000})
+			.tickFormat(function(d){return d/1000})
 			.tickPadding(8 - width);
-
-	var gradient = svg2.append("defs")
-		.append("linearGradient")
-		  .attr("id", "gradient")
-		  .attr("x1", "0%")
-		  .attr("y1", "0%")
-		  .attr("x2", "100%")
-		  .attr("y2", "100%")
-		  .attr("spreadMethod", "pad");
-
-	gradient.append("stop")
-		  .attr("offset", "0%")
-		  .attr("stop-color", "#32CD32")
-		  .attr("stop-opacity", 1);
-
-	gradient.append("stop")
-		  .attr("offset", "100%")
-		  .attr("stop-color", "#DC143C")
-		  .attr("stop-opacity", 1);
-
 
 	svg2.append("g")
 		.attr("id","ejex-lang")
 		.attr("transform","translate(0,"+(height-margen)+")")
 		.call(xAxis_lang);
 
+	var color = d3.scaleLinear()
+		.domain([0,1,2])
+		.range(["#32CD32", "#FF8C00", "#DC143C"]);
+
 	svg2.append("g")
 		.attr("id","ejey-lang")
 		.attr("transform","translate("+margen+","+0+")")
 		.call(yAxis_lang);
-
-	console.log(usr_langs);
-	console.log(y_lang.domain());
 
 	var barras = svg2.append("g")
 		.attr("transform", "translate(" + 0 + "," + (height-margen) + ")")
@@ -543,7 +521,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     	.attr("height", function(d){ return height-margen-y_lang(d["sum"]); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
 			.attr("y", function(d){ return -height+margen+y_lang(d["sum"])})
-			.attr("fill","url(#gradient)");
+			.attr("fill",function(d){ return color(2*d["sum"]/max_lang)});
 
 	//Funciones auxiliares
 
