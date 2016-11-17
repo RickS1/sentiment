@@ -474,7 +474,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     .align([0.5]);
 
 	var y_lang = d3.scaleLinear()
-		.domain([0, d3.max(c_idiomas,function(d){return d;})*1.15])
+		.domain([0, d3.max(usr_langs,function(d){return d["sum"];})*1.15])
 		.range([height-margen,margen]);
 
 	var xAxis_lang = d3.axisBottom(x_lang);
@@ -495,6 +495,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.call(yAxis_lang);
 
 	console.log(usr_langs);
+	console.log(y_lang.domain());
 
 	var barras = svg2.append("g")
 		.attr("transform", "translate(" + 0 + "," + (height-margen) + ")")
