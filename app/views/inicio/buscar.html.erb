@@ -13,6 +13,11 @@
 .darkorange { fill: #FF8C00; }
 .darkorchid { fill: #9932CC; }
 
+/* Ejes de barchart */
+#ejex-lang path, #ejey-lang path { opacity: 0; }
+#ejey-lang.tick { opacity: 0.45; }
+
+
 .tooltip {
   position: absolute;
   width: 200px;
@@ -484,12 +489,34 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.domain([0, d3.max(usr_langs,function(d){return d["sum"];})])
 		.range([height-margen,0]);
 
-	var xAxis_lang = d3.axisBottom(x_lang);
+	var xAxis_lang = d3.axisBottom(x_lang)
+			.tickFormat(function(d){return ""});
 
 	var yAxis_lang = d3.axisRight(y_lang)
 			.ticks(10)
-			.tickSize(width-margen)
+			.tickSize(width)
+			.tickFormat(function(d){return d/1000})
 			.tickPadding(8 - width);
+
+	var gradient = svg2.append("defs")
+		.append("linearGradient")
+		  .attr("id", "gradient")
+		  .attr("x1", "0%")
+		  .attr("y1", "0%")
+		  .attr("x2", "100%")
+		  .attr("y2", "100%")
+		  .attr("spreadMethod", "pad");
+
+	gradient.append("stop")
+		  .attr("offset", "0%")
+		  .attr("stop-color", "#32CD32")
+		  .attr("stop-opacity", 1);
+
+	gradient.append("stop")
+		  .attr("offset", "100%")
+		  .attr("stop-color", "#DC143C")
+		  .attr("stop-opacity", 1);
+
 
 	svg2.append("g")
 		.attr("id","ejex-lang")
@@ -515,7 +542,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	    .attr("width", x_lang.bandwidth())
     	.attr("height", function(d){ return height-margen-y_lang(d["sum"]); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
-			.attr("y", function(d){ return -height+margen+y_lang(d["sum"])});
+			.attr("y", function(d){ return -height+margen+y_lang(d["sum"])})
+			.attr("fill","url(#gradient)");
 
 	//Funciones auxiliares
 
