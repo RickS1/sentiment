@@ -16,7 +16,8 @@
 /* Ejes de barchart */
 #ejex-lang path { opacity: 0.2; }
 #ejey-lang path { opacity: 0; }
-#ejey-lang>.tick { opacity: 0.45; }
+#ejey-lang>.tick>line { opacity: 0.45; }
+#ejey-lang>.tick>text { opacity: 0.9; }
 #ejex-lang>.tick { opacity: 0; }
 
 
@@ -510,7 +511,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var leg_lang = svg2.append("text")
 			.attr("class", "label")
-			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/1.5)) + ")")
+			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/3.5)) + ")")
 			.attr("text-anchor", "middle")
 			.text("* El rango se dividió entre 5 para una mejor visualización");
 		
@@ -563,6 +564,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
                .duration(500)
                .style("opacity", 0);
       });
+
+		d3.selectAll("#ejey-lang.tick ine").attr("x2","-670");
 
 	//Funciones auxiliares
 
