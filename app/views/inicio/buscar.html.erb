@@ -490,7 +490,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var max_lang = d3.max(usr_langs,function(d){return d["sum"]});
 
 	var y_lang = d3.scaleLinear()
-		.domain([0, max_lang/6])
+		.domain([0, max_lang/5])
 		.range([height-margen,0]);
 
 	var xAxis_lang = d3.axisBottom(x_lang)
@@ -504,19 +504,19 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var tx_lang = svg2.append("text")
 			.attr("class", "label")
-			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/2)) + ")")
+			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/1.8)) + ")")
 			.attr("text-anchor", "middle")
 			.text("Idioma");
 
 	var leg_lang = svg2.append("text")
 			.attr("class", "label")
-			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen)) + ")")
+			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/1.5)) + ")")
 			.attr("text-anchor", "middle")
-			.text("* El rango se dividió entre 6 para una mejor visualización");
+			.text("* El rango se dividió entre 5 para una mejor visualización");
 		
 	var ty_lang = svg2.append("text")
 			.attr("class", "label")
-			.attr("transform", "rotate(-90) translate(" + ((margen - height)/2) + "," + (-margen/2) + ")")
+			.attr("transform", "rotate(-90) translate(" + ((margen - height)/2) + "," + (margen/2) + ")")
 			.attr("text-anchor", "middle")
 			.text("Cantidad (miles)");
 
@@ -531,7 +531,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	svg2.append("g")
 		.attr("id","ejey-lang")
-		.attr("transform","translate("+margen+","+0+")")
+		.attr("transform","translate("+width_l+","+0+")")
 		.call(yAxis_lang);
 
 	var barras = svg2.append("g")
@@ -543,10 +543,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("class","barra-lang")
 			.attr("id", function(d){ return "b_lang-"+d["lab"]})
 	    .attr("width", x_lang.bandwidth())
-    	.attr("height", function(d){ return height-margen-y_lang(d["sum"]); })
+    	.attr("height", function(d){ return (height-margen-y_lang(d["sum"]) < 5 ? 5 :height-margen-y_lang(d["sum"])); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
 			.attr("y", function(d){ return -height+margen+y_lang(d["sum"])})
-			.attr("fill",function(d){ return color((6*d["sum"]/max_lang >= 1 ? 1 : 6*d["sum"]/max_lang ))})
+			.attr("fill",function(d){ return color((5*d["sum"]/max_lang >= 1 ? 1 : 5*d["sum"]/max_lang ))})
 			.on("mouseover", function(d,i) {
 					d3.selectAll(".barra-lang").transition().style("opacity", "0.2").duration(200);
 					d3.select("#b_lang-"+d["lab"]).transition().style("opacity","1").duration(200);
