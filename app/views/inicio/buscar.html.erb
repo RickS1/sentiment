@@ -515,7 +515,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	    .attr("width", x_lang.bandwidth())
     	.attr("height", function(d){ return height-margen-y_lang(d["sum"]); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
-			.attr("y", function(d){ return -height+y_lang(d["sum"])});
+			.attr("y", function(d){ return -height+margen+y_lang(d["sum"])});
 
 	//Funciones auxiliares
 
