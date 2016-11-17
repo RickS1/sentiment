@@ -486,7 +486,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     .align([0.5]);
 
 	var y_lang = d3.scaleLinear()
-		.domain([0, d3.max(usr_langs,function(d){return d["sum"];})])
+		.domain([0, d3.max(usr_langs,function(d){return d["sum"];})/3])
 		.range([height-margen,0]);
 
 	var xAxis_lang = d3.axisBottom(x_lang)
@@ -494,8 +494,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var yAxis_lang = d3.axisRight(y_lang)
 			.ticks(10)
-			.tickSize(width)
-			.tickFormat(function(d){return d/1000})
+			.tickSize(700)
+			.tickFormat(function(d){return d["sum"]/1000})
 			.tickPadding(8 - width);
 
 	var gradient = svg2.append("defs")
@@ -504,12 +504,17 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		  .attr("x1", "0%")
 		  .attr("y1", "0%")
 		  .attr("x2", "100%")
-		  .attr("y2", "100%")
+		  .attr("y2", "0%")
 		  .attr("spreadMethod", "pad");
 
 	gradient.append("stop")
 		  .attr("offset", "0%")
 		  .attr("stop-color", "#32CD32")
+		  .attr("stop-opacity", 1);
+
+	gradient.append("stop")
+		  .attr("offset", "50%")
+		  .attr("stop-color", "#FF8C00")
 		  .attr("stop-opacity", 1);
 
 	gradient.append("stop")
