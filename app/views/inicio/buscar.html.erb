@@ -504,11 +504,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.data(usr_langs)
 		.enter().append("rect")
 			.attr("class","barra-lang")
-			.attr("id", function(d,i){ return "b_lang-"+i})
+			.attr("id", function(d){ return "b_lang-"+d["lab"]})
 	    .attr("width", x_lang.bandwidth())
-    	.attr("height", function(d){ return y_lang(d["sum"]); })
-			.attr("x", function(d,i){ return x_lang(d["lab"])})
-			.attr("y", function(d,i){ return -y_lang(d["sum"])});
+    	.attr("height", function(d){ return /*y_lang(d["sum"]);*/5 })
+			.attr("x", function(d){ return x_lang(d["lab"])})
+			.attr("y", function(d){ return -y_lang(d["sum"])});
 
 	//Funciones auxiliares
 
