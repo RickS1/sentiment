@@ -495,7 +495,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.call(yAxis_lang);
 
 	var barras = svg2.append("g")
-		.attr("transform", "translate(" + margen + "," + (height-margen) + ")")
+		.attr("transform", "translate(" + 0 + "," + (height-margen) + ")")
 		.attr("id","g-barras-lang")
 		.selectAll(".barra-lang")
 		.data(usr_langs)
