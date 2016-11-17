@@ -51,21 +51,23 @@ button {
 
 </style>
 <div>
+<% if false %>
 <button id="b0">Reset</button>
+<% end %>
 <svg id="svg0" width="650" height="600">
 </svg>
 </div>
+
 <div>
 <svg id="svg1" width="650" height="600">
 </svg>
 </div>
-<% if false %>
+
 <div>
-<button id="b2">Reset</button>
-<svg id="svg2" width="650" height="600">
+<svg id="svg2" width="550" height="500">
 </svg>
 </div>
-<% end %>
+
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -114,9 +116,9 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	data.forEach(function(d){
 		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"])){
 			if(typeof d["idioma"] !== 'undefined'){
-				var indice = idiomas.indexOf(d["idioma"]);
+				var indice = idiomas.indexOf(d["idioma"].toLowerCase());
 				if(indice < 0){
-					idiomas.push(d["idioma"]);
+					idiomas.push(d["idioma"].toLowerCase());
 					c_idiomas.push(1);
 				}
 				else c_idiomas[indice] = c_idiomas[indice] + 1;
@@ -228,6 +230,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var svg = d3.select("#svg0"),
 			width = 500,
+			margen = 35,
 			height = 500;
 
 	var zoom = d3.zoom()
@@ -460,6 +463,37 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("x",0)
 			.attr("dy",25)
 			.attr("font-size",24);
+
+	//Sección barchart de idiomas
+
+	var svg2 = d3.select("#svg2");
+
+	var x_lang = d3.scaleOrdinal()
+		.domain(idiomas)
+		.range([margen,width-margen]);
+
+	var y_lang = scaleLinear()
+		.domain([0, Math.max(c_idiomas)])
+		.range([height-margen,margen]);
+
+	var xAxis_lang = d3.axisBottom(x_lang);
+
+	var yAxis_lang = d3.axisRight(y)
+			.ticks(10)
+			.tickSize(width)
+			.tickPadding(8 - width);
+
+	svg2.append("g")
+		.attr("id","ejex-lang")
+		.attr("transform","translate(0,"+height-margen+")")
+		.call(xAxis_lang);
+
+	svg2.append("g")
+		.attr("id","ejey-lang")
+		.attr("transform","translate("+margen+",0)")
+		.call(yAxis_lang);
+
+	//Funciones auxiliares
 
 	function zoomed() {
 		view0.attr("transform", d3.event.transform);
