@@ -64,7 +64,7 @@ button {
 </div>
 
 <div>
-<svg id="svg2" width="550" height="500">
+<svg id="svg2" width="750" height="500">
 </svg>
 </div>
 
@@ -468,7 +468,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var x_lang = d3.scaleBand()
 		.domain(idiomas)
-		.range([margen,width])
+		.range([margen,700])
   	.paddingInner([0.1])
     .paddingOuter([0.3])
     .align([0.5]);
@@ -494,6 +494,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.attr("transform","translate("+margen+","+0+")")
 		.call(yAxis_lang);
 
+	usr_langs = usr_langs.sort(function(a,b){ return a["sum"] - b["sum"] });
 	console.log(usr_langs);
 	console.log(y_lang.domain());
 
@@ -508,7 +509,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	    .attr("width", x_lang.bandwidth())
     	.attr("height", function(d){ return y_lang(d["sum"]); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
-			.attr("y", function(d){ return -y_lang(d["sum"])});
+			.attr("y", function(d){ return height-margen-y_lang(d["sum"])});
 
 	//Funciones auxiliares
 
