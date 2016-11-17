@@ -483,6 +483,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.tickSize(width)
 			.tickPadding(8 - width);
 
+	svg2.append("g")
+		.attr("id","ejex-lang")
+		.attr("transform","translate(0,"+height-margen+")")
+		.call(xAxis_lang);
+
+	svg2.append("g")
+		.attr("id","ejey-lang")
+		.attr("transform","translate("+margen+",0)")
+		.call(yAxis_lang);
+
 	//Funciones auxiliares
 
 	function zoomed() {

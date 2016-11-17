@@ -472,7 +472,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.domain(idiomas)
 		.range([margen,width-margen]);
 
-	var y_lang = scaleLinear()
+	var y_lang = d3.scaleLinear()
 		.domain([0, Math.max(c_idiomas)])
 		.range([height-margen,margen]);
 
