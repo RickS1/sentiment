@@ -214,8 +214,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		usr_langs.push({i: i, lab: d, sum: c_idiomas[i]});
 	});
 
-	console.log(usr_langs);
-
 	var total = 0;
 
 	porcentajes_usuarios.forEach(function(d){total = total + d["sum"]});
@@ -504,8 +502,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		.enter().append("rect")
 			.attr("class","barra-lang")
 			.attr("id", function(d,i){ return "b_lang-"+i})
+	    .attr("width", x_lang.bandwidth())
+    	.attr("height", function(d){ return y_lang(d["sum"]); })
 			.attr("x", function(d,i){ return x_lang(d["lab"])})
-			.attr("y", function(d,i){ return y_lang(d["count"])});
+			.attr("y", function(d,i){ return y_lang(d["sum"])});
 
 	//Funciones auxiliares
 
