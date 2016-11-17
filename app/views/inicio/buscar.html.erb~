@@ -496,7 +496,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var xAxis_lang = d3.axisBottom(x_lang)
 			.tickFormat(function(d){return ""});
 
-	var yAxis_lang = d3.axisRight(y_lang)
+	var yAxis_lang = d3.axisLeft(y_lang)
 			.ticks(10)
 			.tickSize(700)
 			.tickFormat(function(d){return d/1000})
@@ -504,13 +504,13 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var tx_lang = svg2.append("text")
 			.attr("class", "label")
-			.attr("transform", "translate(" + (width/2) + "," + (height-(margen/2)) + ")")
+			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/2)) + ")")
 			.attr("text-anchor", "middle")
 			.text("Idioma");
 		
 	var ty_lang = svg2.append("text")
 			.attr("class", "label")
-			.attr("transform", "rotate(-90) translate(" + ((margen/2) - height) + "," + (-margen) ")")
+			.attr("transform", "rotate(-90) translate(" + ((margen - height)/2) + "," + (-margen/2) + ")")
 			.attr("text-anchor", "middle")
 			.text("Cantidad (miles)");
 
