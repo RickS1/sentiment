@@ -112,7 +112,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	data.forEach(function(d){
 		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"])){
 			d['followers'] = +d['followers']; 
-			d['following'] = +d['following']; 
+			d['following'] = +d['following'];
+			if(typeof d["ubicacion"] !== 'undefined') console.log(d["ubicacion"]);
 			d["posts"] = +d["posts"];
 			var fecha = d["desde"].split(" ")[0].split("-");
 			var hoy = (new Date()).toString().split(" ");
@@ -199,7 +200,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var total = 0;
 
 	porcentajes_usuarios.forEach(function(d){total = total + d["sum"]});
-	console.log(total);
 	
 	while(datos.length < 1500){
 		var index = Math.round(Math.random()*data.length);
