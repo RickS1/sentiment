@@ -385,6 +385,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	svg.call(zoom);
 
+	//Trazado de la gráfica de pastel
+
 	var svg1 = d3.select("#svg1");
 
 	var g_pie = d3.pie().value(function(d){return d["sum"]}).sort(function(a,b){return a["i"] - b["i"]})(porcentajes_usuarios);
@@ -597,6 +599,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var path_mapa = d3.geoPath()
 		  .projection(proj_mapa);
 
+	var zoom_mapa = d3.zoom()
+			.scaleExtent([1, 60])
+			.translateExtent([[-30, -100], [width, height]])
+			.on("zoom", zoomed_map);
+
 	d3.json("http://200.12.162.229:81/world.json", function(error, world) {
 		if (error) throw error;
 
@@ -637,7 +644,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		    .attr("d", path_mapa);
 	});
 
-
+	map.call(zoom_mapa);
 	//Funciones auxiliares
 
 	function zoomed() {
@@ -647,6 +654,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		d3.selectAll(".punto").attr("transform",d3.event.transform)
 			.attr("r", function(d){return (r*(1 + d["posts"]/max_posts))/d3.event.transform.k})
 			.attr("stroke-width",1/d3.event.transform.k);
+	}
+
+	function zoomed_map() {
+		d3.selectAll(".country").attr("transform",d3.event.transform);
+		d3.selectAll(".boundary").attr("transform",d3.event.transform);
 	}
 
 	function resetted() {
