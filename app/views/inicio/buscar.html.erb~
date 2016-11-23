@@ -76,6 +76,11 @@ button {
 </svg>
 </div>
 
+<div>
+<svg id="map" width="900" height="550">
+</svg>
+</div>
+
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -566,6 +571,33 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
       });
 
 		d3.selectAll("#ejey-lang")._groups[0][0].childNodes.forEach(function(d,i){if(i==0) return false; d.childNodes[0].setAttribute("x2","-670")});
+
+	//Trazado del mapa
+	var proj_mapa = d3.geoAlbers();
+	var path_mapa = d3.geoPath()
+		  .projection(proj_mapa);
+
+	d3.json("http://bl.ocks.org/mbostock/raw/4090846/world-50m.json", function(error, world) {
+		if (error) throw error;
+
+		var countries = topojson.feature(world, world.objects.countries).features,
+		    neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+		var map = d3.select("#map");
+
+		map.selectAll(".country")
+		    .data(countries)
+		  .enter().insert("path", ".graticule")
+		    .attr("class", "country")
+		    .attr("d", path_mapa)
+		    /*.style("fill", function(d, i) { return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })*/;
+
+		svg.insert("path", ".graticule")
+		    .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+		    .attr("class", "boundary")
+		    .attr("d", path_mapa);
+	});
+
 
 	//Funciones auxiliares
 

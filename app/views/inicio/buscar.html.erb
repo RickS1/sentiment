@@ -577,7 +577,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 	var path_mapa = d3.geoPath()
 		  .projection(proj_mapa);
 
-	d3.json("http://bl.ocks.org/mbostock/raw/4090846/world-50m.json", function(error, world) {
+	d3.json("http://200.12.162.229:81/world.json", function(error, world) {
 		if (error) throw error;
 
 		var countries = topojson.feature(world, world.objects.countries).features,
