@@ -601,7 +601,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	var zoom_mapa = d3.zoom()
 			.scaleExtent([1, 60])
-			.translateExtent([[-30, -100], [width, height]])
+			.translateExtent([[0, 0], [900, 500]])
 			.on("zoom", zoomed_map);
 
 	d3.json("http://200.12.162.229:81/world.json", function(error, world) {
