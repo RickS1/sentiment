@@ -642,9 +642,10 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		    .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
 		    .attr("class", "boundary")
 		    .attr("d", path_mapa);
+
+			map.call(zoom_mapa);
 	});
 
-	map.call(zoom_mapa);
 	//Funciones auxiliares
 
 	function zoomed() {
