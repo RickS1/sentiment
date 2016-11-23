@@ -610,6 +610,17 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		  .enter().insert("path", ".graticule")
 		    .attr("class", "country")
 		    .attr("d", path_mapa)
+				.attr("id",function(d,i){ return "pais-"+i})
+				.on("mouseover",function(d,i){
+					d3.selectAll(".country").transition()
+						.duration(200).style("opacity","0");
+					d3.select("#pais-"+i).transition()
+						.duration(200).style("opacity","1");
+				})
+				.on("mouseleave",function(d,i){
+					d3.selectAll(".country"9.transition()
+						.duration(200).style("opacity","");
+				})
 		    /*.style("fill", function(d, i) { return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })*/;
 
 		map.insert("path", ".graticule")
