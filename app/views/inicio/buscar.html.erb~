@@ -593,7 +593,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	//Trazado del mapa
 
-	var proj_mapa = d3.geoAlbers();
+	var proj_mapa = d3.geoEquirectangular();
 	var path_mapa = d3.geoPath()
 		  .projection(proj_mapa);
 
