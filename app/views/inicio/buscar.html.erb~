@@ -1,5 +1,23 @@
 <style>
 
+/* Mapa */
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+
+.land {
+  fill: #222;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
 /* Opacidades */
 .tenue { opacity: 0.2; }
 .visible { opacity: 0.45; }
@@ -592,12 +610,14 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		  .enter().insert("path", ".graticule")
 		    .attr("class", "country")
 		    .attr("d", path_mapa)
+				.attr("transform","scale(0.2)")
 		    /*.style("fill", function(d, i) { return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })*/;
 
 		map.insert("path", ".graticule")
 		    .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
 		    .attr("class", "boundary")
-		    .attr("d", path_mapa);
+		    .attr("d", path_mapa)
+				.attr("transform","scale(0.2)");
 	});
 
 
