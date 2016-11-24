@@ -158,8 +158,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				}
 				else c_idiomas[indice] = c_idiomas[indice] + 1;*/
 				var indice = av_abbrs.indexOf(d["idioma"].split("-")[0].toLowerCase());
-				console.log(av_langs[indice] + " " + av_langs[indice][sum]);
-				av_langs[indice][sum] = av_langs[indice][sum] + 1;
+				console.log(av_langs[indice]);
+				av_langs[indice]["sum"] = av_langs[indice]["sum"] + 1;
 			}
 
 			if(typeof d["ubicacion"] !== 'undefined' && d["ubicacion"] != "" && d["ubicacion"] != null){
