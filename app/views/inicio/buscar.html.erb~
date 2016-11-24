@@ -662,7 +662,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			map.call(zoom_mapa);
 	});
 
-	console.log(ubicaciones)
+	console.log(usr_locs);
 
 	//Funciones auxiliares
 
