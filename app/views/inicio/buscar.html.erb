@@ -560,7 +560,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("class", "label")
 			.attr("transform", "translate(" + (width_l/2) + "," + (height-(margen/3.8)) + ")")
 			.attr("text-anchor", "middle")
-			.text("* El rango se dividió entre 5 para una mejor visualización");
+			.text("");
 		
 	var ty_lang = svg2.append("text")
 			.attr("class", "label")
@@ -601,7 +601,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["idioma"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/total_langs).toFixed(2) + "%")
+          tooltip.html(d["idioma"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/total_langs).toFixed(2) + "%" + ( 100*d["sum"]/total_langs <= 0.5 ? "<br>* Rango dividido para mejor visualización" : ""))
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
