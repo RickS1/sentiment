@@ -143,10 +143,11 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		{i: 24, lab: ">4 Bot/spammer", color: "#9932cc", sum: 0}
 	];
 
-	var idiomas = [], c_idiomas = [];
+	var idiomas = [], c_idiomas = [], ubicaciones = [], c_ubicaciones = [];
 	
 	data.forEach(function(d){
 		if(typeof d["posts"] !== 'undefined' && d["posts"] != null && !isNaN(d["posts"])){
+
 			if(typeof d["idioma"] !== 'undefined'){
 				var indice = idiomas.indexOf(d["idioma"].toLowerCase());
 				if(indice < 0){
@@ -155,6 +156,16 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				}
 				else c_idiomas[indice] = c_idiomas[indice] + 1;
 			}
+
+			if(typeof d["ubicacion"] !== 'undefined' && d["ubicacion"] != "" && d["ubicacion"] != null){
+				var ind = ubicaciones.indexOf(d["ubicacion"].toLowerCase());
+				if(ind < 0){
+					ubicaciones.push(d["ubicacion"].toLowerCase());
+					c_ubicaciones.push(1);
+				}
+				else c_ubicaciones[ind] = c_ubicaciones[ind] + 1;
+			}
+
 			d['followers'] = +d['followers']; 
 			d['following'] = +d['following'];
 			d["posts"] = +d["posts"];
@@ -240,10 +251,14 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 	});
 
-	var usr_langs = [];
+	var usr_langs = [], usr_locs =[];
 
 	idiomas.forEach(function(d,i){
 		usr_langs.push({i: i, lab: d, sum: +c_idiomas[i]});
+	});
+
+	ubicaciones.forEach(function(d,i){
+		usr_locs.push({i: i, lab: d, sum: +c_ubicaciones[i]});
 	});
 
 	var total = 0;
@@ -618,6 +633,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 		    .attr("class", "country")
 		    .attr("d", path_mapa)
 				.attr("id",function(d,i){ return "pais-"+i})
+				.attr("fill","#CCCCCC")
 				.on("mouseover",function(d,i){
 					d3.selectAll(".country").transition()
 						.duration(200).style("opacity","0.3");
@@ -645,6 +661,8 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 
 			map.call(zoom_mapa);
 	});
+
+	console.log(usr_locs);
 
 	//Funciones auxiliares
 
