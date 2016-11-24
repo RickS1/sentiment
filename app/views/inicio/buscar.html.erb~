@@ -158,7 +158,6 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 				}
 				else c_idiomas[indice] = c_idiomas[indice] + 1;*/
 				var indice = av_abbrs.indexOf(d["idioma"].split("-")[0].toLowerCase());
-				console.log(av_langs[indice]);
 				av_langs[indice]["sum"] = av_langs[indice]["sum"] + 1;
 			}
 
@@ -592,7 +591,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("class","barra-lang")
 			.attr("id", function(d){ return "b_lang-"+d["idioma"]})
 	    .attr("width", x_lang.bandwidth())
-    	.attr("height", function(d){ return (height-margen-y_lang(d["sum"]) < 5 ? 5 :height-margen-y_lang(d["sum"])); })
+    	.attr("height", function(d){ return (d["sum"] == 0 ? 0 : (height-margen-y_lang(d["sum"]) < 5 ? 5 :height-margen-y_lang(d["sum"]))); })
 			.attr("x", function(d){ return x_lang(d["lab"])})
 			.attr("y", function(d){ return (height-margen-y_lang(d["sum"]) < 5 ? -5 : -height+margen+y_lang(d["sum"]))})
 			.attr("fill",function(d){ return color((5*d["sum"]/max_lang >= 1 ? 1 : 5*d["sum"]/max_lang ))})
