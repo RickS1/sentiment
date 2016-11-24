@@ -601,7 +601,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["lab"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/total_langs).toFixed(2) + "%")
+          tooltip.html(d["idioma"] + "<br>Total: " + d["sum"] + "<br>Porcentaje: " + (100*d["sum"]/total_langs).toFixed(2) + "%")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
       })
