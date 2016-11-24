@@ -592,12 +592,12 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
 			.attr("id", function(d){ return "b_lang-"+d["idioma"]})
 	    .attr("width", x_lang.bandwidth())
     	.attr("height", function(d){ return (d["sum"] == 0 ? 0 : (height-margen-y_lang(d["sum"]) < 5 ? 5 :height-margen-y_lang(d["sum"]))); })
-			.attr("x", function(d){ return x_lang(d["lab"])})
+			.attr("x", function(d){ return x_lang(d["idioma"])})
 			.attr("y", function(d){ return (height-margen-y_lang(d["sum"]) < 5 ? -5 : -height+margen+y_lang(d["sum"]))})
 			.attr("fill",function(d){ return color((5*d["sum"]/max_lang >= 1 ? 1 : 5*d["sum"]/max_lang ))})
 			.on("mouseover", function(d,i) {
 					d3.selectAll(".barra-lang").transition().style("opacity", "0.2").duration(200);
-					d3.select("#b_lang-"+d["lab"]).transition().style("opacity","1").duration(200);
+					d3.select("#b_lang-"+d["idioma"]).transition().style("opacity","1").duration(200);
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);

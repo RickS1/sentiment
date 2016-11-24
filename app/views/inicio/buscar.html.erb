@@ -535,7 +535,7 @@ d3.csv('http://200.12.162.229:81/usr_stats_TrumpPresident.csv',function(data){
     .paddingOuter([0.3])
     .align([0.5]);
 
-	var max_lang = d3.max(usr_langs,function(d){return d["sum"]});
+	var max_lang = d3.max(av_langs,function(d){return d["sum"]});
 
 	var y_lang = d3.scaleLinear()
 		.domain([0, max_lang/5])
