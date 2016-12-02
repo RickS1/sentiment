@@ -47,7 +47,7 @@ gem 'crossfilter-rails'
 
 gem 'gon'
 
-gem 'yt', '~> 0.28.0'
+gem 'youtube_search'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
