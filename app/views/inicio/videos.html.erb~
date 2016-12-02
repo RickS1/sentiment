@@ -1,5 +1,7 @@
 <div>
 
-<%= "#{@playlist.each {|v| v.title + '<br>'}}" %>
+<% @playlist.each do |v| %>
 
+	<%= v.title '" " + v.id %><br>
+<% end %>
 </div>
