@@ -1,6 +1,6 @@
 <div>
 
-<%= "#{@videos.first}" %><br>
+<%= "#{@vids.where(q: 'Colegio de México PRED').first}" %><br>
 <%= "#{@video.title}" %>
 
 </div>
