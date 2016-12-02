@@ -1,7 +1,6 @@
 <div>
 <%= "#{@size}" %>
-<% @videos.each do |v| %>
-	<%= v %>
-<% end %>
+<%= "#{@videos.first}" %>
+
 <%= "#{@videos.each}" %>
 </div>

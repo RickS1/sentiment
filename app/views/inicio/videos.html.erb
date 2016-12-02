@@ -1,6 +1,6 @@
 <div>
-<%= "#{@size}" %>
-<%= "#{@videos.first}" %>
+<%= "#{@size}" %><br>
+<%= "#{@videos.map(&:title)}" %><br>
 
 <%= "#{@videos.each}" %>
 </div>
