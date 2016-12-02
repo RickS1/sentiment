@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'inicio/buscar'
-  get 'inicio/obtener_stats' => 'inicio#obtener_stats', :as => :stats
+  get 'inicio/videos' => 'inicio#videos', :as => :videos
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
