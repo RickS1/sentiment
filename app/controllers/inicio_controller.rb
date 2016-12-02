@@ -3,8 +3,8 @@ class InicioController < ApplicationController
   end
 
   def videos
-    @vids = Yt::Collections::Videos.new
-
-    @video = Yt::Video.new id: 'wdW3o6nwOfY'
+    #@vids = Yt::Collections::Videos.new
+    #@video = Yt::Video.new id: 'wdW3o6nwOfY'
+		@playlist = YoutubeSearch.search('Colegio de México PRED')
   end
 end

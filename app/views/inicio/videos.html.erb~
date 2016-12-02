@@ -1,6 +1,7 @@
 <div>
 
-<%= "#{@vids.where(q: 'Colegio de México PRED').each[0]}" %><br>
+<%= "#{@vids.where(q: 'Colegio de México PRED').size}" %>
+<%= "#{@vids.where(q: 'Colegio de México PRED').each.to_a[0]}" %><br>
 <%= "#{@video.title}" %>
 
 </div>
