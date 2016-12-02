@@ -1,5 +1,5 @@
 <div>
 
-<%= "#{@videos.size}" %><br>
+<%= "#{@videos.first}" %><br>
 
 </div>
