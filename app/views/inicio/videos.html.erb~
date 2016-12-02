@@ -1,6 +1,6 @@
 <div>
 
-<%= "#{@vids.where(q: 'Colegio de México PRED').instance_variables}" %><br>
+<%= "#{@vids.where(q: 'Colegio de México PRED').@items}" %><br>
 <%= "#{@video.title}" %>
 
 </div>
