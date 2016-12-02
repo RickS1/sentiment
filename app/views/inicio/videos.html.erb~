@@ -5,7 +5,7 @@
 	<% @videos << v.embed_html %><br>
 <% end %>
 
-
+<% i = 0 %>
 <% while i < 20 %>
 	<%= @videos[i].html_safe %><br>
 	<% i = i + 1 %>
