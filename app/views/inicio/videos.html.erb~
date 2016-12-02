@@ -1,5 +1,5 @@
 <div>
 
-<%= "#{@playlist}" %>
+<%= "#{@playlist.each {|v| v.title + '<br>'}}" %>
 
 </div>
