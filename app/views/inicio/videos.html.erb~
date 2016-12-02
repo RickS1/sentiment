@@ -1,5 +1,5 @@
 <div>
 
-<%= "#{@videos.first.to_json}" %><br>
+<%= "#{@videos.size}" %><br>
 
 </div>
