@@ -1,6 +1,6 @@
 <div>
 
-<%= "#{@vids.where(q: 'Colegio de México PRED').each}" %><br>
+<%= "#{@vids.where(q: 'Colegio de México PRED').each[0]}" %><br>
 <%= "#{@video.title}" %>
 
 </div>
