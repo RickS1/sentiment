@@ -1,7 +1,12 @@
 <div>
 
+<% @ videos = [] %>
 <% @playlist.each do |v| %>
+	<% @videos << v.embed_html %><br>
+<% end %>
 
-	<%= v.embed_html %><br>
+<% i = 0 %>
+<% while i < 20 %>
+	<%= @videos[i].html_safe %><br>
 <% end %>
 </div>
