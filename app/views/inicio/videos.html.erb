@@ -2,6 +2,6 @@
 
 <% @playlist.each do |v| %>
 
-	<%= v.title + " " + v.id + " -.- " + v.methods.inspect %><br>
+	<%= v.embed_html %><br>
 <% end %>
 </div>
