@@ -3,5 +3,5 @@
 <% @videos.each do |v| %>
 	<%= v %>
 <% end %>
-<%= "#{@videos}" %>
+<%= "#{@videos.each}" %>
 </div>
