@@ -1,5 +1,5 @@
 <div>
 <%= "#{@size}" %><br>
-<%= "#{@videos}" %><br>
+<%= "#{@videos.methods}" %><br>
 
 </div>
