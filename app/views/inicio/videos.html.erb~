@@ -6,7 +6,7 @@
 	<% if i >= 20 %>
 		<% break %>
 	<% end %>
-	<%= v.embed_html.safe_html %><br>
+	<%= v.embed_html.html_safe %><br>
 	<% i = i + 1 %>
 <% end %>
 

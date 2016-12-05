@@ -3,12 +3,14 @@
 <% i = 0 %>
 <% @videos = [] %>
 <% @playlist.each do |v| %>
-	<% if i >= 20 %>
-		<% break %>
-	<% end %>
-	<%= v.embed_html.html_safe %><br>
-	<% i = i + 1 %>
+	<% @videos << {thumbnail: v.thumbnail_url, id: v.id, desc: v.description} %>
 <% end %>
 
-
+<% @videos.each do |v| %>
+	<div>
+		<a href=<%= "https://www.youtube.com/watch?v=" + v.id %> data-uk-lightbox>
+			<%= image_tag(v.thumbnail, alt: v.description, class: "") %>
+		</a>
+	</div>
+<% end %>
 </div>
