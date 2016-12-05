@@ -1,7 +1,6 @@
 <div>
 
-<% i = 0 %>
-<% @videos = [] %>
+<script type="text/javascript" src="../js/lightbox.js"></script>
 <% @playlist.each do |v| %>
 		<div>
 		<a href=<%= "https://www.youtube.com/watch?v=" + v.id %> data-uk-lightbox>

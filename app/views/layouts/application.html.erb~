@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<script type="text/javascript" src="/js/uikit.js"></script>
+
 <%= yield %>
 
 </body>

@@ -1,16 +1,14 @@
 <div>
 
+<script type="text/javascript" src="../js/lightbox.js"></script>
 <% i = 0 %>
 <% @videos = [] %>
 <% @playlist.each do |v| %>
-	<% @videos << {thumbnail: v.thumbnail_url, id: v.id, desc: v.description} %>
-<% end %>
-
-<% @videos.each do |v| %>
-	<div>
-		<a href=<%= "https://www.youtube.com/watch?v=" + v["id"] %> data-uk-lightbox>
-			<%= image_tag(v["thumbnail"], alt: v["desc"], class: "") %>
+		<div>
+		<a href=<%= "https://www.youtube.com/watch?v=" + v.id %> data-uk-lightbox>
+			<%= image_tag(v.thumbnail_url, alt: v.description, class: "thumbs") %>
 		</a>
 	</div>
 <% end %>
+
 </div>
