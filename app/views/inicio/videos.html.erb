@@ -8,8 +8,8 @@
 
 <% @videos.each do |v| %>
 	<div>
-		<a href=<%= "https://www.youtube.com/watch?v=" + v.id %> data-uk-lightbox>
-			<%= image_tag(v.thumbnail, alt: v.description, class: "") %>
+		<a href=<%= "https://www.youtube.com/watch?v=" + v["id"] %> data-uk-lightbox>
+			<%= image_tag(v["thumbnail"], alt: v["desc"], class: "") %>
 		</a>
 	</div>
 <% end %>
